@@ -21,6 +21,8 @@ public class Crawler
       		in.close();
 	}
 
+	
+	/*do you believe?*/
 	public void openConnection() throws SQLException, IOException
 	{
 		String drivers = props.getProperty("jdbc.drivers");
