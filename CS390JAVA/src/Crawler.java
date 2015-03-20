@@ -13,7 +13,7 @@ public class Crawler
 	Crawler() {
 		urlID = 0;
 	}
-
+/*d?*/
 	public void readProperties() throws IOException {
       		props = new Properties();
       		FileInputStream in = new FileInputStream("database.properties");
