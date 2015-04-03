@@ -233,15 +233,15 @@ public class Crawler {
 			crawler.readProperties();
 			String root = crawler.props.getProperty("crawler.root");
 			crawler.openConnection();
-			ArrayList<MYURL> arrayList = crawler.getURL("Zhiyuan");
-			for (MYURL myURL: arrayList) {
-				System.out.println(myURL.url_id + ": " + myURL.url);
-				System.out.println(myURL.url_description);
-				System.out.println(myURL.image);
-			}
-		//	crawler.createDB();
-		//	crawler.queue.offer(root);
-		//	crawler.fetchURL();
+			//ArrayList<MYURL> arrayList = crawler.getURL("Zhiyuan");
+			//for (MYURL myURL: arrayList) {
+			//	System.out.println(myURL.url_id + ": " + myURL.url);
+			//	System.out.println(myURL.url_description);
+			//	System.out.println(myURL.image);
+			//}
+			crawler.createDB();
+			crawler.queue.offer(root);
+			crawler.fetchURL();
 		//	crawler.queue.offer("ftp://ftp.cs.purdue.edu/");
 		//	crawler.fetchURL();
 			
