@@ -3,4 +3,8 @@
 
 <display>
 	
+	<category name="category.tools">
+		<portlet id="web-crawler"></portlet>
+		<portlet id="search-engine"></portlet>
+	</category>
 </display>

@@ -3,6 +3,22 @@
 
 <liferay-portlet-app>
 	
+	<portlet>
+		<portlet-name>web-crawler</portlet-name>
+		<icon></icon>
+		<header-portlet-css></header-portlet-css>
+		<footer-portlet-javascript></footer-portlet-javascript>
+		<css-class-wrapper>web-crawler-portlet</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>search-engine</portlet-name>
+		<icon>/img/icon.png</icon>
+		<header-portlet-css>/css/styles.css</header-portlet-css>
+		<footer-portlet-javascript>
+			/js/script.js
+		</footer-portlet-javascript>
+		<css-class-wrapper>search-engine-portlet</css-class-wrapper>
+	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>

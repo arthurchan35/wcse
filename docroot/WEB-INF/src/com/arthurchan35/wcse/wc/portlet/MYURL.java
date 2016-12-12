@@ -1,4 +1,4 @@
-package cs390;
+package com.arthurchan35.wcse.wc.portlet;
 
 public class MYURL {
 	public int url_id;

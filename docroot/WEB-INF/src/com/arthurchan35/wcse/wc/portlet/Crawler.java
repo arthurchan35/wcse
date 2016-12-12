@@ -1,4 +1,4 @@
-package cs390;
+package com.arthurchan35.wcse.wc.portlet;
 import java.io.*;
 import java.sql.*;
 import java.util.*;

@@ -7,7 +7,7 @@ body{
 	font-size:13px;
 	color:#eee;
 	font-family:Arial, Helvetica, sans-serif;
-	background:url('img/bg.png');
+	background:url('../img/bg.png');
 	background-size:cover;
 }
 
@@ -20,7 +20,7 @@ body{
 
 h1{
 	font-family:Corbel,'Myriad Pro',Arial, Helvetica, sans-serif;
-	background:url('img/kon.png') no-repeat center top;
+	background:url('../img/kon.png') no-repeat center top;
 	text-indent:-9999px;
 	overflow:hidden;
 	height:90px;
@@ -47,7 +47,7 @@ fieldset{
 	/* This div contains the transparent search box */
 	width:420px;
 	height:36px;
-	background:url("img/searchBox.png") no-repeat;
+	background:url("../img/searchBox.png") no-repeat;
 	float:left;
 	margin-right:12px;
 }
@@ -57,7 +57,7 @@ fieldset{
 	
 	border:none;
 	color:#888888;
-	background:url("img/searchBox.png") no-repeat;
+	background:url("../img/searchBox.png") no-repeat;
 	
 	float:left;
 	font-family:Arial,Helvetica,sans-serif;
@@ -81,7 +81,7 @@ fieldset{
 }
 
 .icons li{
-	background:url("img/icons.png") no-repeat;
+	background:url("../img/icons.png") no-repeat;
 	float:left;
 	height:19px;
 	text-indent:-9999px;
@@ -114,7 +114,7 @@ span.arrow{
 	height:6px;
 	margin:21px 0 0 5px;
 	position:absolute;
-	background:url('img/arrow.png') no-repeat;
+	background:url('../img/arrow.png') no-repeat;
 	left:0;
 }
 
@@ -123,7 +123,7 @@ span.arrow{
 
 
 #submitButton{
-	background:url('img/buttons.png') no-repeat;
+	background:url('../img/buttons.png') no-repeat;
 	width:83px;
 	height:36px;
 	text-indent:-9999px;
@@ -233,7 +233,7 @@ p.notFound{
 #more{
 	width:83px;
 	height:24px;
-	background:url('img/more.png') no-repeat;
+	background:url('../img/more.png') no-repeat;
 	cursor:pointer;
 	margin:40px auto;
 }
