@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+
+<service-builder package-path="com.arthurchan35.wcse">
+
+	<author>Arthur Chan</author>
+
+	<namespace>UrlStorage</namespace>
+
+	<entity name="Pages" local-service="true">
+		<column name="url_id" type="long" primary="true" entity="Words" mapping-table="Pages_Words"></column>
+		<column name="url" type="String"></column>
+		<column name="description" type="String"></column>
+		<column name="image" type="String"></column>
+	</entity>
+
+	<entity name="Words" local-service="true">
+		<column name="word_id" type="long" primary="true"></column>
+		<column name="url_id" type="long" entity="Pages" mapping-table="Pages_Words"></column>
+		<column name="word" type="String"></column>
+	</entity>
+
+</service-builder>

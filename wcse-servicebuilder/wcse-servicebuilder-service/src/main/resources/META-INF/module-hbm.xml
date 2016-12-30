@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="false" default-lazy="false">
+	<import class="com.arthurchan35.wcse.model.Pages" />
+	<import class="com.arthurchan35.wcse.model.Words" />
+	<class name="com.arthurchan35.wcse.model.impl.PagesImpl" table="UrlStorage_Pages">
+		<id name="url_id" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="url" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="image" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.arthurchan35.wcse.model.impl.WordsImpl" table="UrlStorage_Words">
+		<id name="word_id" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="word" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+</hibernate-mapping>

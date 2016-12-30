@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean class="com.arthurchan35.wcse.service.impl.PagesLocalServiceImpl" id="com.arthurchan35.wcse.service.PagesLocalService" />
+	<bean class="com.arthurchan35.wcse.service.impl.PagesServiceImpl" id="com.arthurchan35.wcse.service.PagesService" />
+	<bean class="com.arthurchan35.wcse.service.persistence.impl.PagesPersistenceImpl" id="com.arthurchan35.wcse.service.persistence.PagesPersistence" parent="basePersistence" />
+	<bean class="com.arthurchan35.wcse.service.impl.WordsLocalServiceImpl" id="com.arthurchan35.wcse.service.WordsLocalService" />
+	<bean class="com.arthurchan35.wcse.service.impl.WordsServiceImpl" id="com.arthurchan35.wcse.service.WordsService" />
+	<bean class="com.arthurchan35.wcse.service.persistence.impl.WordsPersistenceImpl" id="com.arthurchan35.wcse.service.persistence.WordsPersistence" parent="basePersistence" />
+</beans>
