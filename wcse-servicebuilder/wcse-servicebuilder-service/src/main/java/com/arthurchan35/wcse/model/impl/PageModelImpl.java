@@ -92,7 +92,11 @@ public class PageModelImpl extends BaseModelImpl<Page> implements PageModel {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.example.service.util.PropsUtil.get(
 				"value.object.finder.cache.enabled.com.arthurchan35.wcse.model.Page"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.example.service.util.PropsUtil.get(
+				"value.object.column.bitmask.enabled.com.arthurchan35.wcse.model.Page"),
+			true);
+	public static final long URL_COLUMN_BITMASK = 1L;
+	public static final long URL_ID_COLUMN_BITMASK = 2L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -246,7 +250,17 @@ public class PageModelImpl extends BaseModelImpl<Page> implements PageModel {
 
 	@Override
 	public void setUrl(String url) {
+		_columnBitmask |= URL_COLUMN_BITMASK;
+
+		if (_originalUrl == null) {
+			_originalUrl = _url;
+		}
+
 		_url = url;
+	}
+
+	public String getOriginalUrl() {
+		return GetterUtil.getString(_originalUrl);
 	}
 
 	@JSON
@@ -279,6 +293,10 @@ public class PageModelImpl extends BaseModelImpl<Page> implements PageModel {
 	@Override
 	public void setImage(String image) {
 		_image = image;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -372,6 +390,11 @@ public class PageModelImpl extends BaseModelImpl<Page> implements PageModel {
 
 	@Override
 	public void resetOriginalValues() {
+		PageModelImpl pageModelImpl = this;
+
+		pageModelImpl._originalUrl = pageModelImpl._url;
+
+		pageModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -460,7 +483,9 @@ public class PageModelImpl extends BaseModelImpl<Page> implements PageModel {
 		};
 	private long _url_id;
 	private String _url;
+	private String _originalUrl;
 	private String _description;
 	private String _image;
+	private long _columnBitmask;
 	private Page _escapedModel;
 }

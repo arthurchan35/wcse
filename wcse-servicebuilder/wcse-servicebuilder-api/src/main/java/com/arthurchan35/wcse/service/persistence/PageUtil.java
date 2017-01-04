@@ -109,6 +109,61 @@ public class PageUtil {
 	}
 
 	/**
+	* Returns the page where url = &#63; or throws a {@link NoSuchPageException} if it could not be found.
+	*
+	* @param url the url
+	* @return the matching page
+	* @throws NoSuchPageException if a matching page could not be found
+	*/
+	public static Page findByURL(java.lang.String url)
+		throws com.arthurchan35.wcse.exception.NoSuchPageException {
+		return getPersistence().findByURL(url);
+	}
+
+	/**
+	* Returns the page where url = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param url the url
+	* @return the matching page, or <code>null</code> if a matching page could not be found
+	*/
+	public static Page fetchByURL(java.lang.String url) {
+		return getPersistence().fetchByURL(url);
+	}
+
+	/**
+	* Returns the page where url = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param url the url
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the matching page, or <code>null</code> if a matching page could not be found
+	*/
+	public static Page fetchByURL(java.lang.String url,
+		boolean retrieveFromCache) {
+		return getPersistence().fetchByURL(url, retrieveFromCache);
+	}
+
+	/**
+	* Removes the page where url = &#63; from the database.
+	*
+	* @param url the url
+	* @return the page that was removed
+	*/
+	public static Page removeByURL(java.lang.String url)
+		throws com.arthurchan35.wcse.exception.NoSuchPageException {
+		return getPersistence().removeByURL(url);
+	}
+
+	/**
+	* Returns the number of pages where url = &#63;.
+	*
+	* @param url the url
+	* @return the number of matching pages
+	*/
+	public static int countByURL(java.lang.String url) {
+		return getPersistence().countByURL(url);
+	}
+
+	/**
 	* Caches the page in the entity cache if it is enabled.
 	*
 	* @param page the page

@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.log.Log;
@@ -44,6 +45,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -80,6 +82,236 @@ public class PagePersistenceImpl extends BasePersistenceImpl<Page>
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(PageModelImpl.ENTITY_CACHE_ENABLED,
 			PageModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
+	public static final FinderPath FINDER_PATH_FETCH_BY_URL = new FinderPath(PageModelImpl.ENTITY_CACHE_ENABLED,
+			PageModelImpl.FINDER_CACHE_ENABLED, PageImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByURL",
+			new String[] { String.class.getName() },
+			PageModelImpl.URL_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_URL = new FinderPath(PageModelImpl.ENTITY_CACHE_ENABLED,
+			PageModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByURL",
+			new String[] { String.class.getName() });
+
+	/**
+	 * Returns the page where url = &#63; or throws a {@link NoSuchPageException} if it could not be found.
+	 *
+	 * @param url the url
+	 * @return the matching page
+	 * @throws NoSuchPageException if a matching page could not be found
+	 */
+	@Override
+	public Page findByURL(String url) throws NoSuchPageException {
+		Page page = fetchByURL(url);
+
+		if (page == null) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("url=");
+			msg.append(url);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isDebugEnabled()) {
+				_log.debug(msg.toString());
+			}
+
+			throw new NoSuchPageException(msg.toString());
+		}
+
+		return page;
+	}
+
+	/**
+	 * Returns the page where url = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param url the url
+	 * @return the matching page, or <code>null</code> if a matching page could not be found
+	 */
+	@Override
+	public Page fetchByURL(String url) {
+		return fetchByURL(url, true);
+	}
+
+	/**
+	 * Returns the page where url = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param url the url
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the matching page, or <code>null</code> if a matching page could not be found
+	 */
+	@Override
+	public Page fetchByURL(String url, boolean retrieveFromCache) {
+		Object[] finderArgs = new Object[] { url };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = finderCache.getResult(FINDER_PATH_FETCH_BY_URL,
+					finderArgs, this);
+		}
+
+		if (result instanceof Page) {
+			Page page = (Page)result;
+
+			if (!Objects.equals(url, page.getUrl())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_SELECT_PAGE_WHERE);
+
+			boolean bindUrl = false;
+
+			if (url == null) {
+				query.append(_FINDER_COLUMN_URL_URL_1);
+			}
+			else if (url.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_URL_URL_3);
+			}
+			else {
+				bindUrl = true;
+
+				query.append(_FINDER_COLUMN_URL_URL_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindUrl) {
+					qPos.add(url);
+				}
+
+				List<Page> list = q.list();
+
+				if (list.isEmpty()) {
+					finderCache.putResult(FINDER_PATH_FETCH_BY_URL, finderArgs,
+						list);
+				}
+				else {
+					Page page = list.get(0);
+
+					result = page;
+
+					cacheResult(page);
+
+					if ((page.getUrl() == null) || !page.getUrl().equals(url)) {
+						finderCache.putResult(FINDER_PATH_FETCH_BY_URL,
+							finderArgs, page);
+					}
+				}
+			}
+			catch (Exception e) {
+				finderCache.removeResult(FINDER_PATH_FETCH_BY_URL, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (Page)result;
+		}
+	}
+
+	/**
+	 * Removes the page where url = &#63; from the database.
+	 *
+	 * @param url the url
+	 * @return the page that was removed
+	 */
+	@Override
+	public Page removeByURL(String url) throws NoSuchPageException {
+		Page page = findByURL(url);
+
+		return remove(page);
+	}
+
+	/**
+	 * Returns the number of pages where url = &#63;.
+	 *
+	 * @param url the url
+	 * @return the number of matching pages
+	 */
+	@Override
+	public int countByURL(String url) {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_URL;
+
+		Object[] finderArgs = new Object[] { url };
+
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_PAGE_WHERE);
+
+			boolean bindUrl = false;
+
+			if (url == null) {
+				query.append(_FINDER_COLUMN_URL_URL_1);
+			}
+			else if (url.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_URL_URL_3);
+			}
+			else {
+				bindUrl = true;
+
+				query.append(_FINDER_COLUMN_URL_URL_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindUrl) {
+					qPos.add(url);
+				}
+
+				count = (Long)q.uniqueResult();
+
+				finderCache.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				finderCache.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_URL_URL_1 = "page.url IS NULL";
+	private static final String _FINDER_COLUMN_URL_URL_2 = "page.url = ?";
+	private static final String _FINDER_COLUMN_URL_URL_3 = "(page.url IS NULL OR page.url = '')";
 
 	public PagePersistenceImpl() {
 		setModelClass(Page.class);
@@ -94,6 +326,9 @@ public class PagePersistenceImpl extends BasePersistenceImpl<Page>
 	public void cacheResult(Page page) {
 		entityCache.putResult(PageModelImpl.ENTITY_CACHE_ENABLED,
 			PageImpl.class, page.getPrimaryKey(), page);
+
+		finderCache.putResult(FINDER_PATH_FETCH_BY_URL,
+			new Object[] { page.getUrl() }, page);
 
 		page.resetOriginalValues();
 	}
@@ -146,6 +381,8 @@ public class PagePersistenceImpl extends BasePersistenceImpl<Page>
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		clearUniqueFindersCache((PageModelImpl)page);
 	}
 
 	@Override
@@ -156,6 +393,45 @@ public class PagePersistenceImpl extends BasePersistenceImpl<Page>
 		for (Page page : pages) {
 			entityCache.removeResult(PageModelImpl.ENTITY_CACHE_ENABLED,
 				PageImpl.class, page.getPrimaryKey());
+
+			clearUniqueFindersCache((PageModelImpl)page);
+		}
+	}
+
+	protected void cacheUniqueFindersCache(PageModelImpl pageModelImpl,
+		boolean isNew) {
+		if (isNew) {
+			Object[] args = new Object[] { pageModelImpl.getUrl() };
+
+			finderCache.putResult(FINDER_PATH_COUNT_BY_URL, args,
+				Long.valueOf(1));
+			finderCache.putResult(FINDER_PATH_FETCH_BY_URL, args, pageModelImpl);
+		}
+		else {
+			if ((pageModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_URL.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] { pageModelImpl.getUrl() };
+
+				finderCache.putResult(FINDER_PATH_COUNT_BY_URL, args,
+					Long.valueOf(1));
+				finderCache.putResult(FINDER_PATH_FETCH_BY_URL, args,
+					pageModelImpl);
+			}
+		}
+	}
+
+	protected void clearUniqueFindersCache(PageModelImpl pageModelImpl) {
+		Object[] args = new Object[] { pageModelImpl.getUrl() };
+
+		finderCache.removeResult(FINDER_PATH_COUNT_BY_URL, args);
+		finderCache.removeResult(FINDER_PATH_FETCH_BY_URL, args);
+
+		if ((pageModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_URL.getColumnBitmask()) != 0) {
+			args = new Object[] { pageModelImpl.getOriginalUrl() };
+
+			finderCache.removeResult(FINDER_PATH_COUNT_BY_URL, args);
+			finderCache.removeResult(FINDER_PATH_FETCH_BY_URL, args);
 		}
 	}
 
@@ -262,6 +538,8 @@ public class PagePersistenceImpl extends BasePersistenceImpl<Page>
 
 		boolean isNew = page.isNew();
 
+		PageModelImpl pageModelImpl = (PageModelImpl)page;
+
 		Session session = null;
 
 		try {
@@ -285,12 +563,15 @@ public class PagePersistenceImpl extends BasePersistenceImpl<Page>
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew) {
+		if (isNew || !PageModelImpl.COLUMN_BITMASK_ENABLED) {
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
 		entityCache.putResult(PageModelImpl.ENTITY_CACHE_ENABLED,
 			PageImpl.class, page.getPrimaryKey(), page, false);
+
+		clearUniqueFindersCache(pageModelImpl);
+		cacheUniqueFindersCache(pageModelImpl, isNew);
 
 		page.resetOriginalValues();
 
@@ -717,8 +998,11 @@ public class PagePersistenceImpl extends BasePersistenceImpl<Page>
 	protected FinderCache finderCache;
 	private static final String _SQL_SELECT_PAGE = "SELECT page FROM Page page";
 	private static final String _SQL_SELECT_PAGE_WHERE_PKS_IN = "SELECT page FROM Page page WHERE url_id IN (";
+	private static final String _SQL_SELECT_PAGE_WHERE = "SELECT page FROM Page page WHERE ";
 	private static final String _SQL_COUNT_PAGE = "SELECT COUNT(page) FROM Page page";
+	private static final String _SQL_COUNT_PAGE_WHERE = "SELECT COUNT(page) FROM Page page WHERE ";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "page.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Page exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Page exists with the key {";
 	private static final Log _log = LogFactoryUtil.getLog(PagePersistenceImpl.class);
 }

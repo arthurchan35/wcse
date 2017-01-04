@@ -1,3 +1,5 @@
+create unique index IX_AF16C4B7 on UrlStorage_Page (url[$COLUMN_LENGTH:75$]);
+
 create index IX_6D63BB9B on UrlStorage_Page_Word (companyId);
 create index IX_1FFB8C0C on UrlStorage_Page_Word (url_id);
 create index IX_15BF21D3 on UrlStorage_Page_Word (word_id);
