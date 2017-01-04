@@ -2,9 +2,9 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping auto-import="false" default-lazy="false">
-	<import class="com.arthurchan35.wcse.model.Pages" />
-	<import class="com.arthurchan35.wcse.model.Words" />
-	<class name="com.arthurchan35.wcse.model.impl.PagesImpl" table="UrlStorage_Pages">
+	<import class="com.arthurchan35.wcse.model.Page" />
+	<import class="com.arthurchan35.wcse.model.Word" />
+	<class name="com.arthurchan35.wcse.model.impl.PageImpl" table="UrlStorage_Page">
 		<id name="url_id" type="long">
 			<generator class="assigned" />
 		</id>
@@ -12,7 +12,7 @@
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="image" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="com.arthurchan35.wcse.model.impl.WordsImpl" table="UrlStorage_Words">
+	<class name="com.arthurchan35.wcse.model.impl.WordImpl" table="UrlStorage_Word">
 		<id name="word_id" type="long">
 			<generator class="assigned" />
 		</id>
