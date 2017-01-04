@@ -46,8 +46,9 @@ public class PageLocalServiceWrapper implements PageLocalService,
 
 	@Override
 	public com.arthurchan35.wcse.model.Page addPage(java.lang.String url,
-		java.lang.String description, java.lang.String image) {
-		return _pageLocalService.addPage(url, description, image);
+		java.lang.String description, java.lang.String image,
+		java.util.List<java.lang.String> words) {
+		return _pageLocalService.addPage(url, description, image, words);
 	}
 
 	/**
@@ -262,11 +263,6 @@ public class PageLocalServiceWrapper implements PageLocalService,
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _pageLocalService.dynamicQueryCount(dynamicQuery, projection);
-	}
-
-	@Override
-	public void test() {
-		_pageLocalService.test();
 	}
 
 	@Override

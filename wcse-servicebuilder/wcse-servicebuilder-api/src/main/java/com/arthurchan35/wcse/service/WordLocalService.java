@@ -224,6 +224,4 @@ public interface WordLocalService extends BaseLocalService,
 	*/
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
 		Projection projection);
-
-	public void addWords(List<java.lang.String> words);
 }

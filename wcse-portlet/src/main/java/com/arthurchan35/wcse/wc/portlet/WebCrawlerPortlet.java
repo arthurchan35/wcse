@@ -73,48 +73,9 @@ public class WebCrawlerPortlet extends MVCPortlet {
 		Element ele = imageElements.last();
 		if (ele != null) image = ele.absUrl("src");
 
-		try{	
-			Page page = PageLocalServiceUtil.addPage(urlScanned, description, image);
-			insertWordsInDB(list);
-		}
-		catch (Exception e) {
-			Statement stat = null;
-			urlID = backup;
-			try {
-				stat = connection.createStatement();
-				stat.executeQuery( "SET SQL_SAFE_UPDATES = 0");
-				stat.executeUpdate( "DELETE FROM url_table WHERE url_id = '"+urlID+"'");
-				stat.executeUpdate( "DELETE FROM word_table WHERE url_id = '"+urlID+"'");
-			} catch (SQLException e1) { System.out.println("Somethin happened in deleting");}
-			System.out.println("Somethin happen in insertin urls or words");
-		}
-	}
-	
-	public void insertWordsInDB(List<String> list) throws SQLException, IOException {
-		PreparedStatement statement = connection.prepareStatement("INSERT INTO word_table (word, url_id) VALUES (?, ?)");
-		urlID -= 1;
+		//service builder auto-handles transaction roll back
+		Page page = PageLocalServiceUtil.addPage(urlScanned, description, image, list);
 
-		HashSet<String> set = new HashSet<>();// using hashset to remove duplicates
-
-		for (String temp: list) {
-			
-			temp = temp.replaceAll("^[^a-zA-Z0-9\\s]+|[^a-zA-Z0-9\\s]+$", ""); // removing starting and ending non alphebetics
-			if (temp.equals("") || temp.equals(" ") || temp.equals("\t") || temp.equals("\n")) continue;
-			if (temp.length() > 32) continue;
-			temp = temp.toLowerCase();
-			
-			if (!set.contains(temp)) { // using hashset to remove duplicates
-				//System.out.println("word = " + temp + "; word len = " + temp.length());
-				statement.setString(1, temp);
-				statement.setInt(2, urlID);
-				statement.addBatch();
-				set.add(temp);
-			}
-
-		}
-		statement.executeBatch();
-		statement.close();
-		urlID += 1;
 	}
 
 }

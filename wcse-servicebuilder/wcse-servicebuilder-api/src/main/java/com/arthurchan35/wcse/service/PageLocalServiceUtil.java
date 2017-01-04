@@ -55,8 +55,8 @@ public class PageLocalServiceUtil {
 
 	public static com.arthurchan35.wcse.model.Page addPage(
 		java.lang.String url, java.lang.String description,
-		java.lang.String image) {
-		return getService().addPage(url, description, image);
+		java.lang.String image, java.util.List<java.lang.String> words) {
+		return getService().addPage(url, description, image, words);
 	}
 
 	/**
@@ -252,10 +252,6 @@ public class PageLocalServiceUtil {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
-	}
-
-	public static void test() {
-		getService().test();
 	}
 
 	public static PageLocalService getService() {

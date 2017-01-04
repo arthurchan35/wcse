@@ -15,7 +15,11 @@
 package com.arthurchan35.wcse.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
+
+import java.util.List;
+
 import com.arthurchan35.wcse.model.Page;
+import com.arthurchan35.wcse.model.Word;
 import com.arthurchan35.wcse.service.base.PageLocalServiceBaseImpl;
 
 /**
@@ -39,7 +43,7 @@ public class PageLocalServiceImpl extends PageLocalServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Always use {@link com.arthurchan35.wcse.service.PageLocalServiceUtil} to access the page local service.
 	 */
-	public Page addPage(String url, String description, String image) {
+	public Page addPage(String url, String description, String image, List<String> words) {
 		long url_id = counterLocalService.increment(Page.class.getName());
 		Page page = pagePersistence.create(url_id);
 		
@@ -49,9 +53,19 @@ public class PageLocalServiceImpl extends PageLocalServiceBaseImpl {
 		page.setImage(image);
 		
 		pagePersistence.update(page);
+		
+		for (String wordstr : words) {
+			long word_id = counterLocalService.increment(Word.class.getName());
+			Word word = wordPersistence.create(word_id);
+			
+			word.setUrl_id(word_id);
+			word.setUrl_id(url_id);
+			word.setWord(wordstr);
+			
+			wordPersistence.update(word);
+		}
+		
 		return page;
 	}
-	
-	public void test() {}
 
 }

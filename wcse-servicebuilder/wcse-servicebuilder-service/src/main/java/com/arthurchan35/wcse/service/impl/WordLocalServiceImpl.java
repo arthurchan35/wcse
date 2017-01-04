@@ -42,7 +42,4 @@ public class WordLocalServiceImpl extends WordLocalServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Always use {@link com.arthurchan35.wcse.service.WordLocalServiceUtil} to access the word local service.
 	 */
-	public void addWords(List<String> words) {
-
-	}
 }

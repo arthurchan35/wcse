@@ -248,10 +248,6 @@ public class WordLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static void addWords(java.util.List<java.lang.String> words) {
-		getService().addWords(words);
-	}
-
 	public static WordLocalService getService() {
 		return _serviceTracker.getService();
 	}

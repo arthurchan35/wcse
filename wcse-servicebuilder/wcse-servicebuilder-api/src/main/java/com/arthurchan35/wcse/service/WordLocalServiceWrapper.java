@@ -259,11 +259,6 @@ public class WordLocalServiceWrapper implements WordLocalService,
 	}
 
 	@Override
-	public void addWords(java.util.List<java.lang.String> words) {
-		_wordLocalService.addWords(words);
-	}
-
-	@Override
 	public WordLocalService getWrappedService() {
 		return _wordLocalService;
 	}

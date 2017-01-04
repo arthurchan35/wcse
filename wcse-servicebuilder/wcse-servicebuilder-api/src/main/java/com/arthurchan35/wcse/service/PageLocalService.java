@@ -71,7 +71,7 @@ public interface PageLocalService extends BaseLocalService,
 	public Page addPage(Page page);
 
 	public Page addPage(java.lang.String url, java.lang.String description,
-		java.lang.String image);
+		java.lang.String image, List<java.lang.String> words);
 
 	/**
 	* Creates a new page with the primary key. Does not add the page to the database.
@@ -227,6 +227,4 @@ public interface PageLocalService extends BaseLocalService,
 	*/
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
 		Projection projection);
-
-	public void test();
 }
