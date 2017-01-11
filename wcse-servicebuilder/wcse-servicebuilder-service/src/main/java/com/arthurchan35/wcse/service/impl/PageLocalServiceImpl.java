@@ -67,5 +67,9 @@ public class PageLocalServiceImpl extends PageLocalServiceBaseImpl {
 		
 		return page;
 	}
+	
+	public List<Page> findPagesByUrlIds(String urls, int start, int end) {
+		return pageFinder.findPagesByUrlIds(urls, start, end);
+	}
 
 }

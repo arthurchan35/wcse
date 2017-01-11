@@ -222,6 +222,12 @@ public class PageLocalServiceWrapper implements PageLocalService,
 			orderByComparator);
 	}
 
+	@Override
+	public java.util.List<com.arthurchan35.wcse.model.Page> findPagesByUrlIds(
+		java.lang.String urls, int start, int end) {
+		return _pageLocalService.findPagesByUrlIds(urls, start, end);
+	}
+
 	/**
 	* Returns a range of all the pages.
 	*

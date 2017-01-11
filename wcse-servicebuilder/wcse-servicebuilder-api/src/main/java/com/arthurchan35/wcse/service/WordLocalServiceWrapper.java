@@ -215,6 +215,12 @@ public class WordLocalServiceWrapper implements WordLocalService,
 			orderByComparator);
 	}
 
+	@Override
+	public java.util.List<java.lang.Long> findUrlIdsByWords(
+		java.lang.String words, int start, int end) {
+		return _wordLocalService.findUrlIdsByWords(words, start, end);
+	}
+
 	/**
 	* Returns a range of all the words.
 	*

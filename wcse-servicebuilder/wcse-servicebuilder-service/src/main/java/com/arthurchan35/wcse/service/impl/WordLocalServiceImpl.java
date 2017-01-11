@@ -42,4 +42,8 @@ public class WordLocalServiceImpl extends WordLocalServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Always use {@link com.arthurchan35.wcse.service.WordLocalServiceUtil} to access the word local service.
 	 */
+	public List<Long> findUrlIdsByWords(String words, int start, int end) {
+		return wordFinder.findUrlIdsByWords(words, start, end);
+	}
+
 }

@@ -208,6 +208,11 @@ public class WordLocalServiceUtil {
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
+	public static java.util.List<java.lang.Long> findUrlIdsByWords(
+		java.lang.String words, int start, int end) {
+		return getService().findUrlIdsByWords(words, start, end);
+	}
+
 	/**
 	* Returns a range of all the words.
 	*

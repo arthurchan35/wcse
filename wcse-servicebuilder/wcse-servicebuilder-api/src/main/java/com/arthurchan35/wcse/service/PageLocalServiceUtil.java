@@ -214,6 +214,11 @@ public class PageLocalServiceUtil {
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
+	public static java.util.List<com.arthurchan35.wcse.model.Page> findPagesByUrlIds(
+		java.lang.String urls, int start, int end) {
+		return getService().findPagesByUrlIds(urls, start, end);
+	}
+
 	/**
 	* Returns a range of all the pages.
 	*

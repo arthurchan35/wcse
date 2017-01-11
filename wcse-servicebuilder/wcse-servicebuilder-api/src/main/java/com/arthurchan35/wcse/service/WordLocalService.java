@@ -193,6 +193,9 @@ public interface WordLocalService extends BaseLocalService,
 	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end, OrderByComparator<T> orderByComparator);
 
+	public List<java.lang.Long> findUrlIdsByWords(java.lang.String words,
+		int start, int end);
+
 	/**
 	* Returns a range of all the words.
 	*

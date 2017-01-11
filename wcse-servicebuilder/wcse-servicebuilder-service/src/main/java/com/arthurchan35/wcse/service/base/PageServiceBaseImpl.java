@@ -16,7 +16,9 @@ package com.arthurchan35.wcse.service.base;
 
 import com.arthurchan35.wcse.model.Page;
 import com.arthurchan35.wcse.service.PageService;
+import com.arthurchan35.wcse.service.persistence.PageFinder;
 import com.arthurchan35.wcse.service.persistence.PagePersistence;
+import com.arthurchan35.wcse.service.persistence.WordFinder;
 import com.arthurchan35.wcse.service.persistence.WordPersistence;
 
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -110,6 +112,24 @@ public abstract class PageServiceBaseImpl extends BaseServiceImpl
 	}
 
 	/**
+	 * Returns the page finder.
+	 *
+	 * @return the page finder
+	 */
+	public PageFinder getPageFinder() {
+		return pageFinder;
+	}
+
+	/**
+	 * Sets the page finder.
+	 *
+	 * @param pageFinder the page finder
+	 */
+	public void setPageFinder(PageFinder pageFinder) {
+		this.pageFinder = pageFinder;
+	}
+
+	/**
 	 * Returns the word local service.
 	 *
 	 * @return the word local service
@@ -163,6 +183,24 @@ public abstract class PageServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setWordPersistence(WordPersistence wordPersistence) {
 		this.wordPersistence = wordPersistence;
+	}
+
+	/**
+	 * Returns the word finder.
+	 *
+	 * @return the word finder
+	 */
+	public WordFinder getWordFinder() {
+		return wordFinder;
+	}
+
+	/**
+	 * Sets the word finder.
+	 *
+	 * @param wordFinder the word finder
+	 */
+	public void setWordFinder(WordFinder wordFinder) {
+		this.wordFinder = wordFinder;
 	}
 
 	/**
@@ -370,12 +408,16 @@ public abstract class PageServiceBaseImpl extends BaseServiceImpl
 	protected PageService pageService;
 	@BeanReference(type = PagePersistence.class)
 	protected PagePersistence pagePersistence;
+	@BeanReference(type = PageFinder.class)
+	protected PageFinder pageFinder;
 	@BeanReference(type = com.arthurchan35.wcse.service.WordLocalService.class)
 	protected com.arthurchan35.wcse.service.WordLocalService wordLocalService;
 	@BeanReference(type = com.arthurchan35.wcse.service.WordService.class)
 	protected com.arthurchan35.wcse.service.WordService wordService;
 	@BeanReference(type = WordPersistence.class)
 	protected WordPersistence wordPersistence;
+	@BeanReference(type = WordFinder.class)
+	protected WordFinder wordFinder;
 	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
 	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
 	@ServiceReference(type = com.liferay.portal.kernel.service.ClassNameLocalService.class)

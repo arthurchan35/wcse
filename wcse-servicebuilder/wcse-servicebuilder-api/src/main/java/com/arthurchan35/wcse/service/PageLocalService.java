@@ -196,6 +196,9 @@ public interface PageLocalService extends BaseLocalService,
 	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end, OrderByComparator<T> orderByComparator);
 
+	public List<Page> findPagesByUrlIds(java.lang.String urls, int start,
+		int end);
+
 	/**
 	* Returns a range of all the pages.
 	*
