@@ -162,15 +162,15 @@ public class WordPersistenceImpl extends BasePersistenceImpl<Word>
 	/**
 	 * Creates a new word with the primary key. Does not add the word to the database.
 	 *
-	 * @param word_id the primary key for the new word
+	 * @param wordId the primary key for the new word
 	 * @return the new word
 	 */
 	@Override
-	public Word create(long word_id) {
+	public Word create(long wordId) {
 		Word word = new WordImpl();
 
 		word.setNew(true);
-		word.setPrimaryKey(word_id);
+		word.setPrimaryKey(wordId);
 
 		return word;
 	}
@@ -178,13 +178,13 @@ public class WordPersistenceImpl extends BasePersistenceImpl<Word>
 	/**
 	 * Removes the word with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param word_id the primary key of the word
+	 * @param wordId the primary key of the word
 	 * @return the word that was removed
 	 * @throws NoSuchWordException if a word with the primary key could not be found
 	 */
 	@Override
-	public Word remove(long word_id) throws NoSuchWordException {
-		return remove((Serializable)word_id);
+	public Word remove(long wordId) throws NoSuchWordException {
+		return remove((Serializable)wordId);
 	}
 
 	/**
@@ -307,8 +307,8 @@ public class WordPersistenceImpl extends BasePersistenceImpl<Word>
 		wordImpl.setNew(word.isNew());
 		wordImpl.setPrimaryKey(word.getPrimaryKey());
 
-		wordImpl.setWord_id(word.getWord_id());
-		wordImpl.setUrl_id(word.getUrl_id());
+		wordImpl.setWordId(word.getWordId());
+		wordImpl.setPageId(word.getPageId());
 		wordImpl.setWord(word.getWord());
 
 		return wordImpl;
@@ -341,13 +341,13 @@ public class WordPersistenceImpl extends BasePersistenceImpl<Word>
 	/**
 	 * Returns the word with the primary key or throws a {@link NoSuchWordException} if it could not be found.
 	 *
-	 * @param word_id the primary key of the word
+	 * @param wordId the primary key of the word
 	 * @return the word
 	 * @throws NoSuchWordException if a word with the primary key could not be found
 	 */
 	@Override
-	public Word findByPrimaryKey(long word_id) throws NoSuchWordException {
-		return findByPrimaryKey((Serializable)word_id);
+	public Word findByPrimaryKey(long wordId) throws NoSuchWordException {
+		return findByPrimaryKey((Serializable)wordId);
 	}
 
 	/**
@@ -400,12 +400,12 @@ public class WordPersistenceImpl extends BasePersistenceImpl<Word>
 	/**
 	 * Returns the word with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param word_id the primary key of the word
+	 * @param wordId the primary key of the word
 	 * @return the word, or <code>null</code> if a word with the primary key could not be found
 	 */
 	@Override
-	public Word fetchByPrimaryKey(long word_id) {
-		return fetchByPrimaryKey((Serializable)word_id);
+	public Word fetchByPrimaryKey(long wordId) {
+		return fetchByPrimaryKey((Serializable)wordId);
 	}
 
 	@Override
@@ -715,7 +715,7 @@ public class WordPersistenceImpl extends BasePersistenceImpl<Word>
 	@ServiceReference(type = FinderCache.class)
 	protected FinderCache finderCache;
 	private static final String _SQL_SELECT_WORD = "SELECT word FROM Word word";
-	private static final String _SQL_SELECT_WORD_WHERE_PKS_IN = "SELECT word FROM Word word WHERE word_id IN (";
+	private static final String _SQL_SELECT_WORD_WHERE_PKS_IN = "SELECT word FROM Word word WHERE wordId IN (";
 	private static final String _SQL_COUNT_WORD = "SELECT COUNT(word) FROM Word word";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "word.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Word exists with the primary key ";

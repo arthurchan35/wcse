@@ -49,7 +49,7 @@ public class PageCacheModel implements CacheModel<Page>, Externalizable {
 
 		PageCacheModel pageCacheModel = (PageCacheModel)obj;
 
-		if (url_id == pageCacheModel.url_id) {
+		if (pageId == pageCacheModel.pageId) {
 			return true;
 		}
 
@@ -58,15 +58,15 @@ public class PageCacheModel implements CacheModel<Page>, Externalizable {
 
 	@Override
 	public int hashCode() {
-		return HashUtil.hash(0, url_id);
+		return HashUtil.hash(0, pageId);
 	}
 
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(9);
 
-		sb.append("{url_id=");
-		sb.append(url_id);
+		sb.append("{pageId=");
+		sb.append(pageId);
 		sb.append(", url=");
 		sb.append(url);
 		sb.append(", description=");
@@ -82,7 +82,7 @@ public class PageCacheModel implements CacheModel<Page>, Externalizable {
 	public Page toEntityModel() {
 		PageImpl pageImpl = new PageImpl();
 
-		pageImpl.setUrl_id(url_id);
+		pageImpl.setPageId(pageId);
 
 		if (url == null) {
 			pageImpl.setUrl(StringPool.BLANK);
@@ -112,7 +112,7 @@ public class PageCacheModel implements CacheModel<Page>, Externalizable {
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
-		url_id = objectInput.readLong();
+		pageId = objectInput.readLong();
 		url = objectInput.readUTF();
 		description = objectInput.readUTF();
 		image = objectInput.readUTF();
@@ -121,7 +121,7 @@ public class PageCacheModel implements CacheModel<Page>, Externalizable {
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
-		objectOutput.writeLong(url_id);
+		objectOutput.writeLong(pageId);
 
 		if (url == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -145,7 +145,7 @@ public class PageCacheModel implements CacheModel<Page>, Externalizable {
 		}
 	}
 
-	public long url_id;
+	public long pageId;
 	public String url;
 	public String description;
 	public String image;

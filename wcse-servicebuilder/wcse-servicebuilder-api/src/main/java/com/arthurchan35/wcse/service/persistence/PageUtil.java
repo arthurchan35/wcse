@@ -184,23 +184,23 @@ public class PageUtil {
 	/**
 	* Creates a new page with the primary key. Does not add the page to the database.
 	*
-	* @param url_id the primary key for the new page
+	* @param pageId the primary key for the new page
 	* @return the new page
 	*/
-	public static Page create(long url_id) {
-		return getPersistence().create(url_id);
+	public static Page create(long pageId) {
+		return getPersistence().create(pageId);
 	}
 
 	/**
 	* Removes the page with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param url_id the primary key of the page
+	* @param pageId the primary key of the page
 	* @return the page that was removed
 	* @throws NoSuchPageException if a page with the primary key could not be found
 	*/
-	public static Page remove(long url_id)
+	public static Page remove(long pageId)
 		throws com.arthurchan35.wcse.exception.NoSuchPageException {
-		return getPersistence().remove(url_id);
+		return getPersistence().remove(pageId);
 	}
 
 	public static Page updateImpl(Page page) {
@@ -210,23 +210,23 @@ public class PageUtil {
 	/**
 	* Returns the page with the primary key or throws a {@link NoSuchPageException} if it could not be found.
 	*
-	* @param url_id the primary key of the page
+	* @param pageId the primary key of the page
 	* @return the page
 	* @throws NoSuchPageException if a page with the primary key could not be found
 	*/
-	public static Page findByPrimaryKey(long url_id)
+	public static Page findByPrimaryKey(long pageId)
 		throws com.arthurchan35.wcse.exception.NoSuchPageException {
-		return getPersistence().findByPrimaryKey(url_id);
+		return getPersistence().findByPrimaryKey(pageId);
 	}
 
 	/**
 	* Returns the page with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param url_id the primary key of the page
+	* @param pageId the primary key of the page
 	* @return the page, or <code>null</code> if a page with the primary key could not be found
 	*/
-	public static Page fetchByPrimaryKey(long url_id) {
-		return getPersistence().fetchByPrimaryKey(url_id);
+	public static Page fetchByPrimaryKey(long pageId) {
+		return getPersistence().fetchByPrimaryKey(pageId);
 	}
 
 	public static java.util.Map<java.io.Serializable, Page> fetchByPrimaryKeys(

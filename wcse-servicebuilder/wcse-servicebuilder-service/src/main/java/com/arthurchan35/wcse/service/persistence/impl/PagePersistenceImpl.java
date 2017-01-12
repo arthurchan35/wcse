@@ -438,15 +438,15 @@ public class PagePersistenceImpl extends BasePersistenceImpl<Page>
 	/**
 	 * Creates a new page with the primary key. Does not add the page to the database.
 	 *
-	 * @param url_id the primary key for the new page
+	 * @param pageId the primary key for the new page
 	 * @return the new page
 	 */
 	@Override
-	public Page create(long url_id) {
+	public Page create(long pageId) {
 		Page page = new PageImpl();
 
 		page.setNew(true);
-		page.setPrimaryKey(url_id);
+		page.setPrimaryKey(pageId);
 
 		return page;
 	}
@@ -454,13 +454,13 @@ public class PagePersistenceImpl extends BasePersistenceImpl<Page>
 	/**
 	 * Removes the page with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param url_id the primary key of the page
+	 * @param pageId the primary key of the page
 	 * @return the page that was removed
 	 * @throws NoSuchPageException if a page with the primary key could not be found
 	 */
 	@Override
-	public Page remove(long url_id) throws NoSuchPageException {
-		return remove((Serializable)url_id);
+	public Page remove(long pageId) throws NoSuchPageException {
+		return remove((Serializable)pageId);
 	}
 
 	/**
@@ -588,7 +588,7 @@ public class PagePersistenceImpl extends BasePersistenceImpl<Page>
 		pageImpl.setNew(page.isNew());
 		pageImpl.setPrimaryKey(page.getPrimaryKey());
 
-		pageImpl.setUrl_id(page.getUrl_id());
+		pageImpl.setPageId(page.getPageId());
 		pageImpl.setUrl(page.getUrl());
 		pageImpl.setDescription(page.getDescription());
 		pageImpl.setImage(page.getImage());
@@ -623,13 +623,13 @@ public class PagePersistenceImpl extends BasePersistenceImpl<Page>
 	/**
 	 * Returns the page with the primary key or throws a {@link NoSuchPageException} if it could not be found.
 	 *
-	 * @param url_id the primary key of the page
+	 * @param pageId the primary key of the page
 	 * @return the page
 	 * @throws NoSuchPageException if a page with the primary key could not be found
 	 */
 	@Override
-	public Page findByPrimaryKey(long url_id) throws NoSuchPageException {
-		return findByPrimaryKey((Serializable)url_id);
+	public Page findByPrimaryKey(long pageId) throws NoSuchPageException {
+		return findByPrimaryKey((Serializable)pageId);
 	}
 
 	/**
@@ -682,12 +682,12 @@ public class PagePersistenceImpl extends BasePersistenceImpl<Page>
 	/**
 	 * Returns the page with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param url_id the primary key of the page
+	 * @param pageId the primary key of the page
 	 * @return the page, or <code>null</code> if a page with the primary key could not be found
 	 */
 	@Override
-	public Page fetchByPrimaryKey(long url_id) {
-		return fetchByPrimaryKey((Serializable)url_id);
+	public Page fetchByPrimaryKey(long pageId) {
+		return fetchByPrimaryKey((Serializable)pageId);
 	}
 
 	@Override
@@ -997,7 +997,7 @@ public class PagePersistenceImpl extends BasePersistenceImpl<Page>
 	@ServiceReference(type = FinderCache.class)
 	protected FinderCache finderCache;
 	private static final String _SQL_SELECT_PAGE = "SELECT page FROM Page page";
-	private static final String _SQL_SELECT_PAGE_WHERE_PKS_IN = "SELECT page FROM Page page WHERE url_id IN (";
+	private static final String _SQL_SELECT_PAGE_WHERE_PKS_IN = "SELECT page FROM Page page WHERE pageId IN (";
 	private static final String _SQL_SELECT_PAGE_WHERE = "SELECT page FROM Page page WHERE ";
 	private static final String _SQL_COUNT_PAGE = "SELECT COUNT(page) FROM Page page";
 	private static final String _SQL_COUNT_PAGE_WHERE = "SELECT COUNT(page) FROM Page page WHERE ";

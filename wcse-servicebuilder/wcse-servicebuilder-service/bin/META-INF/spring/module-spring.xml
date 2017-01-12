@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean class="com.arthurchan35.wcse.service.impl.PageLocalServiceImpl" id="com.arthurchan35.wcse.service.PageLocalService" />
+	<bean class="com.arthurchan35.wcse.service.impl.PageServiceImpl" id="com.arthurchan35.wcse.service.PageService" />
+	<bean class="com.arthurchan35.wcse.service.persistence.impl.PagePersistenceImpl" id="com.arthurchan35.wcse.service.persistence.PagePersistence" parent="basePersistence" />
+	<bean class="com.arthurchan35.wcse.service.persistence.impl.PageFinderImpl" id="com.arthurchan35.wcse.service.persistence.PageFinder" parent="basePersistence" />
+	<bean class="com.arthurchan35.wcse.service.impl.WordLocalServiceImpl" id="com.arthurchan35.wcse.service.WordLocalService" />
+	<bean class="com.arthurchan35.wcse.service.impl.WordServiceImpl" id="com.arthurchan35.wcse.service.WordService" />
+	<bean class="com.arthurchan35.wcse.service.persistence.impl.WordPersistenceImpl" id="com.arthurchan35.wcse.service.persistence.WordPersistence" parent="basePersistence" />
+	<bean class="com.arthurchan35.wcse.service.persistence.impl.WordFinderImpl" id="com.arthurchan35.wcse.service.persistence.WordFinder" parent="basePersistence" />
+</beans>

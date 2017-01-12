@@ -92,25 +92,25 @@ public abstract class PageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	/**
 	 * Creates a new page with the primary key. Does not add the page to the database.
 	 *
-	 * @param url_id the primary key for the new page
+	 * @param pageId the primary key for the new page
 	 * @return the new page
 	 */
 	@Override
-	public Page createPage(long url_id) {
-		return pagePersistence.create(url_id);
+	public Page createPage(long pageId) {
+		return pagePersistence.create(pageId);
 	}
 
 	/**
 	 * Deletes the page with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param url_id the primary key of the page
+	 * @param pageId the primary key of the page
 	 * @return the page that was removed
 	 * @throws PortalException if a page with the primary key could not be found
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Page deletePage(long url_id) throws PortalException {
-		return pagePersistence.remove(url_id);
+	public Page deletePage(long pageId) throws PortalException {
+		return pagePersistence.remove(pageId);
 	}
 
 	/**
@@ -207,20 +207,20 @@ public abstract class PageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	@Override
-	public Page fetchPage(long url_id) {
-		return pagePersistence.fetchByPrimaryKey(url_id);
+	public Page fetchPage(long pageId) {
+		return pagePersistence.fetchByPrimaryKey(pageId);
 	}
 
 	/**
 	 * Returns the page with the primary key.
 	 *
-	 * @param url_id the primary key of the page
+	 * @param pageId the primary key of the page
 	 * @return the page
 	 * @throws PortalException if a page with the primary key could not be found
 	 */
 	@Override
-	public Page getPage(long url_id) throws PortalException {
-		return pagePersistence.findByPrimaryKey(url_id);
+	public Page getPage(long pageId) throws PortalException {
+		return pagePersistence.findByPrimaryKey(pageId);
 	}
 
 	@Override
@@ -231,7 +231,7 @@ public abstract class PageLocalServiceBaseImpl extends BaseLocalServiceImpl
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Page.class);
 
-		actionableDynamicQuery.setPrimaryKeyPropertyName("url_id");
+		actionableDynamicQuery.setPrimaryKeyPropertyName("pageId");
 
 		return actionableDynamicQuery;
 	}
@@ -244,7 +244,7 @@ public abstract class PageLocalServiceBaseImpl extends BaseLocalServiceImpl
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(Page.class);
 
-		indexableActionableDynamicQuery.setPrimaryKeyPropertyName("url_id");
+		indexableActionableDynamicQuery.setPrimaryKeyPropertyName("pageId");
 
 		return indexableActionableDynamicQuery;
 	}
@@ -255,7 +255,7 @@ public abstract class PageLocalServiceBaseImpl extends BaseLocalServiceImpl
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Page.class);
 
-		actionableDynamicQuery.setPrimaryKeyPropertyName("url_id");
+		actionableDynamicQuery.setPrimaryKeyPropertyName("pageId");
 	}
 
 	/**

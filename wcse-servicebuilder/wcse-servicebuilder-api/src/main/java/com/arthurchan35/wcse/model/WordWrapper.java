@@ -56,8 +56,8 @@ public class WordWrapper implements Word, ModelWrapper<Word> {
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("word_id", getWord_id());
-		attributes.put("url_id", getUrl_id());
+		attributes.put("wordId", getWordId());
+		attributes.put("pageId", getPageId());
 		attributes.put("word", getWord());
 
 		return attributes;
@@ -65,16 +65,16 @@ public class WordWrapper implements Word, ModelWrapper<Word> {
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long word_id = (Long)attributes.get("word_id");
+		Long wordId = (Long)attributes.get("wordId");
 
-		if (word_id != null) {
-			setWord_id(word_id);
+		if (wordId != null) {
+			setWordId(wordId);
 		}
 
-		Long url_id = (Long)attributes.get("url_id");
+		Long pageId = (Long)attributes.get("pageId");
 
-		if (url_id != null) {
-			setUrl_id(url_id);
+		if (pageId != null) {
+			setPageId(pageId);
 		}
 
 		String word = (String)attributes.get("word");
@@ -160,6 +160,16 @@ public class WordWrapper implements Word, ModelWrapper<Word> {
 	}
 
 	/**
+	* Returns the page ID of this word.
+	*
+	* @return the page ID of this word
+	*/
+	@Override
+	public long getPageId() {
+		return _word.getPageId();
+	}
+
+	/**
 	* Returns the primary key of this word.
 	*
 	* @return the primary key of this word
@@ -170,23 +180,13 @@ public class WordWrapper implements Word, ModelWrapper<Word> {
 	}
 
 	/**
-	* Returns the url_id of this word.
+	* Returns the word ID of this word.
 	*
-	* @return the url_id of this word
+	* @return the word ID of this word
 	*/
 	@Override
-	public long getUrl_id() {
-		return _word.getUrl_id();
-	}
-
-	/**
-	* Returns the word_id of this word.
-	*
-	* @return the word_id of this word
-	*/
-	@Override
-	public long getWord_id() {
-		return _word.getWord_id();
+	public long getWordId() {
+		return _word.getWordId();
 	}
 
 	@Override
@@ -221,6 +221,16 @@ public class WordWrapper implements Word, ModelWrapper<Word> {
 	}
 
 	/**
+	* Sets the page ID of this word.
+	*
+	* @param pageId the page ID of this word
+	*/
+	@Override
+	public void setPageId(long pageId) {
+		_word.setPageId(pageId);
+	}
+
+	/**
 	* Sets the primary key of this word.
 	*
 	* @param primaryKey the primary key of this word
@@ -236,16 +246,6 @@ public class WordWrapper implements Word, ModelWrapper<Word> {
 	}
 
 	/**
-	* Sets the url_id of this word.
-	*
-	* @param url_id the url_id of this word
-	*/
-	@Override
-	public void setUrl_id(long url_id) {
-		_word.setUrl_id(url_id);
-	}
-
-	/**
 	* Sets the word of this word.
 	*
 	* @param word the word of this word
@@ -256,13 +256,13 @@ public class WordWrapper implements Word, ModelWrapper<Word> {
 	}
 
 	/**
-	* Sets the word_id of this word.
+	* Sets the word ID of this word.
 	*
-	* @param word_id the word_id of this word
+	* @param wordId the word ID of this word
 	*/
 	@Override
-	public void setWord_id(long word_id) {
-		_word.setWord_id(word_id);
+	public void setWordId(long wordId) {
+		_word.setWordId(wordId);
 	}
 
 	@Override

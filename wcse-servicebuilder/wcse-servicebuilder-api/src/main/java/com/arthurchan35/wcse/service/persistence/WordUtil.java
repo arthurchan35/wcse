@@ -129,23 +129,23 @@ public class WordUtil {
 	/**
 	* Creates a new word with the primary key. Does not add the word to the database.
 	*
-	* @param word_id the primary key for the new word
+	* @param wordId the primary key for the new word
 	* @return the new word
 	*/
-	public static Word create(long word_id) {
-		return getPersistence().create(word_id);
+	public static Word create(long wordId) {
+		return getPersistence().create(wordId);
 	}
 
 	/**
 	* Removes the word with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param word_id the primary key of the word
+	* @param wordId the primary key of the word
 	* @return the word that was removed
 	* @throws NoSuchWordException if a word with the primary key could not be found
 	*/
-	public static Word remove(long word_id)
+	public static Word remove(long wordId)
 		throws com.arthurchan35.wcse.exception.NoSuchWordException {
-		return getPersistence().remove(word_id);
+		return getPersistence().remove(wordId);
 	}
 
 	public static Word updateImpl(Word word) {
@@ -155,23 +155,23 @@ public class WordUtil {
 	/**
 	* Returns the word with the primary key or throws a {@link NoSuchWordException} if it could not be found.
 	*
-	* @param word_id the primary key of the word
+	* @param wordId the primary key of the word
 	* @return the word
 	* @throws NoSuchWordException if a word with the primary key could not be found
 	*/
-	public static Word findByPrimaryKey(long word_id)
+	public static Word findByPrimaryKey(long wordId)
 		throws com.arthurchan35.wcse.exception.NoSuchWordException {
-		return getPersistence().findByPrimaryKey(word_id);
+		return getPersistence().findByPrimaryKey(wordId);
 	}
 
 	/**
 	* Returns the word with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param word_id the primary key of the word
+	* @param wordId the primary key of the word
 	* @return the word, or <code>null</code> if a word with the primary key could not be found
 	*/
-	public static Word fetchByPrimaryKey(long word_id) {
-		return getPersistence().fetchByPrimaryKey(word_id);
+	public static Word fetchByPrimaryKey(long wordId) {
+		return getPersistence().fetchByPrimaryKey(wordId);
 	}
 
 	public static java.util.Map<java.io.Serializable, Word> fetchByPrimaryKeys(

@@ -33,7 +33,7 @@ public class PageSoap implements Serializable {
 	public static PageSoap toSoapModel(Page model) {
 		PageSoap soapModel = new PageSoap();
 
-		soapModel.setUrl_id(model.getUrl_id());
+		soapModel.setPageId(model.getPageId());
 		soapModel.setUrl(model.getUrl());
 		soapModel.setDescription(model.getDescription());
 		soapModel.setImage(model.getImage());
@@ -82,19 +82,19 @@ public class PageSoap implements Serializable {
 	}
 
 	public long getPrimaryKey() {
-		return _url_id;
+		return _pageId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setUrl_id(pk);
+		setPageId(pk);
 	}
 
-	public long getUrl_id() {
-		return _url_id;
+	public long getPageId() {
+		return _pageId;
 	}
 
-	public void setUrl_id(long url_id) {
-		_url_id = url_id;
+	public void setPageId(long pageId) {
+		_pageId = pageId;
 	}
 
 	public String getUrl() {
@@ -121,7 +121,7 @@ public class PageSoap implements Serializable {
 		_image = image;
 	}
 
-	private long _url_id;
+	private long _pageId;
 	private String _url;
 	private String _description;
 	private String _image;

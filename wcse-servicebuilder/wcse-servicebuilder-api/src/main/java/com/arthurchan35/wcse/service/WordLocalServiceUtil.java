@@ -56,11 +56,11 @@ public class WordLocalServiceUtil {
 	/**
 	* Creates a new word with the primary key. Does not add the word to the database.
 	*
-	* @param word_id the primary key for the new word
+	* @param wordId the primary key for the new word
 	* @return the new word
 	*/
-	public static com.arthurchan35.wcse.model.Word createWord(long word_id) {
-		return getService().createWord(word_id);
+	public static com.arthurchan35.wcse.model.Word createWord(long wordId) {
+		return getService().createWord(wordId);
 	}
 
 	/**
@@ -77,29 +77,29 @@ public class WordLocalServiceUtil {
 	/**
 	* Deletes the word with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param word_id the primary key of the word
+	* @param wordId the primary key of the word
 	* @return the word that was removed
 	* @throws PortalException if a word with the primary key could not be found
 	*/
-	public static com.arthurchan35.wcse.model.Word deleteWord(long word_id)
+	public static com.arthurchan35.wcse.model.Word deleteWord(long wordId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deleteWord(word_id);
+		return getService().deleteWord(wordId);
 	}
 
-	public static com.arthurchan35.wcse.model.Word fetchWord(long word_id) {
-		return getService().fetchWord(word_id);
+	public static com.arthurchan35.wcse.model.Word fetchWord(long wordId) {
+		return getService().fetchWord(wordId);
 	}
 
 	/**
 	* Returns the word with the primary key.
 	*
-	* @param word_id the primary key of the word
+	* @param wordId the primary key of the word
 	* @return the word
 	* @throws PortalException if a word with the primary key could not be found
 	*/
-	public static com.arthurchan35.wcse.model.Word getWord(long word_id)
+	public static com.arthurchan35.wcse.model.Word getWord(long wordId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getWord(word_id);
+		return getService().getWord(wordId);
 	}
 
 	/**

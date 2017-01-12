@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+
+<custom-sql>
+	<sql id="com.arthurchan35.wcse.model.Word.findUrlIdsByWords">
+			<![CDATA[
+				SELECT
+					url_id
+				FROM
+					Word
+				WHERE
+					word
+				IN
+					(?)
+			]]>
+	</sql>
+	
+	<sql id="com.arthurchan35.wcse.model.Page.findPagesByUrlIds">
+			<![CDATA[
+				SELECT
+					{Page_Entity.*}
+				FROM
+					Page
+				WHERE
+					url_id
+				IN
+					(?)
+			]]>
+	</sql>	
+</custom-sql>

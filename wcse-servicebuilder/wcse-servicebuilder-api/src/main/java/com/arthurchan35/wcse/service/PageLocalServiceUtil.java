@@ -62,11 +62,11 @@ public class PageLocalServiceUtil {
 	/**
 	* Creates a new page with the primary key. Does not add the page to the database.
 	*
-	* @param url_id the primary key for the new page
+	* @param pageId the primary key for the new page
 	* @return the new page
 	*/
-	public static com.arthurchan35.wcse.model.Page createPage(long url_id) {
-		return getService().createPage(url_id);
+	public static com.arthurchan35.wcse.model.Page createPage(long pageId) {
+		return getService().createPage(pageId);
 	}
 
 	/**
@@ -83,29 +83,29 @@ public class PageLocalServiceUtil {
 	/**
 	* Deletes the page with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param url_id the primary key of the page
+	* @param pageId the primary key of the page
 	* @return the page that was removed
 	* @throws PortalException if a page with the primary key could not be found
 	*/
-	public static com.arthurchan35.wcse.model.Page deletePage(long url_id)
+	public static com.arthurchan35.wcse.model.Page deletePage(long pageId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePage(url_id);
+		return getService().deletePage(pageId);
 	}
 
-	public static com.arthurchan35.wcse.model.Page fetchPage(long url_id) {
-		return getService().fetchPage(url_id);
+	public static com.arthurchan35.wcse.model.Page fetchPage(long pageId) {
+		return getService().fetchPage(pageId);
 	}
 
 	/**
 	* Returns the page with the primary key.
 	*
-	* @param url_id the primary key of the page
+	* @param pageId the primary key of the page
 	* @return the page
 	* @throws PortalException if a page with the primary key could not be found
 	*/
-	public static com.arthurchan35.wcse.model.Page getPage(long url_id)
+	public static com.arthurchan35.wcse.model.Page getPage(long pageId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPage(url_id);
+		return getService().getPage(pageId);
 	}
 
 	/**

@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.model.PersistedModel;
 import com.liferay.portal.kernel.util.Accessor;
 
 /**
- * The extended model interface for the Page service. Represents a row in the &quot;UrlStorage_Page&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the Page service. Represents a row in the &quot;PagesStorage_Page&quot; database table, with each column mapped to a property of this class.
  *
  * @author Arthur Chan
  * @see PageModel
@@ -37,10 +37,10 @@ public interface Page extends PageModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.arthurchan35.wcse.model.impl.PageImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<Page, Long> URL_ID_ACCESSOR = new Accessor<Page, Long>() {
+	public static final Accessor<Page, Long> PAGE_ID_ACCESSOR = new Accessor<Page, Long>() {
 			@Override
 			public Long get(Page page) {
-				return page.getUrl_id();
+				return page.getPageId();
 			}
 
 			@Override

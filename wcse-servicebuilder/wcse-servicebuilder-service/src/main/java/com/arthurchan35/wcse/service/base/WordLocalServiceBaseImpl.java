@@ -92,25 +92,25 @@ public abstract class WordLocalServiceBaseImpl extends BaseLocalServiceImpl
 	/**
 	 * Creates a new word with the primary key. Does not add the word to the database.
 	 *
-	 * @param word_id the primary key for the new word
+	 * @param wordId the primary key for the new word
 	 * @return the new word
 	 */
 	@Override
-	public Word createWord(long word_id) {
-		return wordPersistence.create(word_id);
+	public Word createWord(long wordId) {
+		return wordPersistence.create(wordId);
 	}
 
 	/**
 	 * Deletes the word with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param word_id the primary key of the word
+	 * @param wordId the primary key of the word
 	 * @return the word that was removed
 	 * @throws PortalException if a word with the primary key could not be found
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Word deleteWord(long word_id) throws PortalException {
-		return wordPersistence.remove(word_id);
+	public Word deleteWord(long wordId) throws PortalException {
+		return wordPersistence.remove(wordId);
 	}
 
 	/**
@@ -207,20 +207,20 @@ public abstract class WordLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	@Override
-	public Word fetchWord(long word_id) {
-		return wordPersistence.fetchByPrimaryKey(word_id);
+	public Word fetchWord(long wordId) {
+		return wordPersistence.fetchByPrimaryKey(wordId);
 	}
 
 	/**
 	 * Returns the word with the primary key.
 	 *
-	 * @param word_id the primary key of the word
+	 * @param wordId the primary key of the word
 	 * @return the word
 	 * @throws PortalException if a word with the primary key could not be found
 	 */
 	@Override
-	public Word getWord(long word_id) throws PortalException {
-		return wordPersistence.findByPrimaryKey(word_id);
+	public Word getWord(long wordId) throws PortalException {
+		return wordPersistence.findByPrimaryKey(wordId);
 	}
 
 	@Override
@@ -231,7 +231,7 @@ public abstract class WordLocalServiceBaseImpl extends BaseLocalServiceImpl
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Word.class);
 
-		actionableDynamicQuery.setPrimaryKeyPropertyName("word_id");
+		actionableDynamicQuery.setPrimaryKeyPropertyName("wordId");
 
 		return actionableDynamicQuery;
 	}
@@ -244,7 +244,7 @@ public abstract class WordLocalServiceBaseImpl extends BaseLocalServiceImpl
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(Word.class);
 
-		indexableActionableDynamicQuery.setPrimaryKeyPropertyName("word_id");
+		indexableActionableDynamicQuery.setPrimaryKeyPropertyName("wordId");
 
 		return indexableActionableDynamicQuery;
 	}
@@ -255,7 +255,7 @@ public abstract class WordLocalServiceBaseImpl extends BaseLocalServiceImpl
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Word.class);
 
-		actionableDynamicQuery.setPrimaryKeyPropertyName("word_id");
+		actionableDynamicQuery.setPrimaryKeyPropertyName("wordId");
 	}
 
 	/**

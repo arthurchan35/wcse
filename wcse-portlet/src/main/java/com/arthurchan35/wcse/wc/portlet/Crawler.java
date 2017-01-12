@@ -18,11 +18,13 @@ public class Crawler {
 	Queue<String> queue;
 	int maxURL;
 	String domain;
+	String root;
 	
 	private Crawler() {
 		queue = new LinkedList<String>();
 		maxURL = 50000;
 		domain = "localHost";
+		root = "localHost:8080";
 	}
 
 	public static Crawler getCrawlerSingleton() {
@@ -30,9 +32,13 @@ public class Crawler {
 		return crawler;
 	}
 	
-	public void setProperty(int maxURL, String domain) {
-		this.maxURL = maxURL;
-		this.domain = domain;
+	public void start(int maxURL, String domain, String root) {
+		this.maxURL = (maxURL > 0) ? maxURL : this.maxURL;
+		this.domain = Validator.isNotNull(domain) ? domain : this.domain;
+		this.root = Validator.isNotNull(root) ? root : this.root;
+		
+		queue.offer(this.root);
+		fetchURL();
 	}
 
 	private void fetchPage(String urlScanned, Document doc) {

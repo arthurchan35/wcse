@@ -73,10 +73,10 @@ public interface WordLocalService extends BaseLocalService,
 	/**
 	* Creates a new word with the primary key. Does not add the word to the database.
 	*
-	* @param word_id the primary key for the new word
+	* @param wordId the primary key for the new word
 	* @return the new word
 	*/
-	public Word createWord(long word_id);
+	public Word createWord(long wordId);
 
 	/**
 	* Deletes the word from the database. Also notifies the appropriate model listeners.
@@ -90,25 +90,25 @@ public interface WordLocalService extends BaseLocalService,
 	/**
 	* Deletes the word with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param word_id the primary key of the word
+	* @param wordId the primary key of the word
 	* @return the word that was removed
 	* @throws PortalException if a word with the primary key could not be found
 	*/
 	@Indexable(type = IndexableType.DELETE)
-	public Word deleteWord(long word_id) throws PortalException;
+	public Word deleteWord(long wordId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Word fetchWord(long word_id);
+	public Word fetchWord(long wordId);
 
 	/**
 	* Returns the word with the primary key.
 	*
-	* @param word_id the primary key of the word
+	* @param wordId the primary key of the word
 	* @return the word
 	* @throws PortalException if a word with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Word getWord(long word_id) throws PortalException;
+	public Word getWord(long wordId) throws PortalException;
 
 	/**
 	* Updates the word in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

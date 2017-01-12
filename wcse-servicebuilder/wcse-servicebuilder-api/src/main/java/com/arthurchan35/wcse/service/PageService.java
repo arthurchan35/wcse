@@ -39,7 +39,7 @@ import com.liferay.portal.kernel.transaction.Transactional;
 @AccessControlled
 @JSONWebService
 @OSGiBeanProperties(property =  {
-	"json.web.service.context.name=urlstorage", "json.web.service.context.path=Page"}, service = PageService.class)
+	"json.web.service.context.name=pagesstorage", "json.web.service.context.path=Page"}, service = PageService.class)
 @ProviderType
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})

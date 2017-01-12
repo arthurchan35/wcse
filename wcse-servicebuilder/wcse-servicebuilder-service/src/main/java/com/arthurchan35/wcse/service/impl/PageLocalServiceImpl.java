@@ -44,10 +44,10 @@ public class PageLocalServiceImpl extends PageLocalServiceBaseImpl {
 	 * Never reference this class directly. Always use {@link com.arthurchan35.wcse.service.PageLocalServiceUtil} to access the page local service.
 	 */
 	public Page addPage(String url, String description, String image, List<String> words) {
-		long url_id = counterLocalService.increment(Page.class.getName());
-		Page page = pagePersistence.create(url_id);
+		long pageId = counterLocalService.increment(Page.class.getName());
+		Page page = pagePersistence.create(pageId);
 		
-		page.setUrl_id(url_id);
+		page.setPageId(pageId);
 		page.setUrl(url);
 		page.setDescription(description);
 		page.setImage(image);
@@ -55,11 +55,11 @@ public class PageLocalServiceImpl extends PageLocalServiceBaseImpl {
 		pagePersistence.update(page);
 		
 		for (String wordstr : words) {
-			long word_id = counterLocalService.increment(Word.class.getName());
-			Word word = wordPersistence.create(word_id);
+			long wordId = counterLocalService.increment(Word.class.getName());
+			Word word = wordPersistence.create(wordId);
 			
-			word.setUrl_id(word_id);
-			word.setUrl_id(url_id);
+			word.setWordId(wordId);
+			word.setPageId(pageId);
 			word.setWord(wordstr);
 			
 			wordPersistence.update(word);

@@ -54,12 +54,12 @@ public class PageLocalServiceWrapper implements PageLocalService,
 	/**
 	* Creates a new page with the primary key. Does not add the page to the database.
 	*
-	* @param url_id the primary key for the new page
+	* @param pageId the primary key for the new page
 	* @return the new page
 	*/
 	@Override
-	public com.arthurchan35.wcse.model.Page createPage(long url_id) {
-		return _pageLocalService.createPage(url_id);
+	public com.arthurchan35.wcse.model.Page createPage(long pageId) {
+		return _pageLocalService.createPage(pageId);
 	}
 
 	/**
@@ -77,32 +77,32 @@ public class PageLocalServiceWrapper implements PageLocalService,
 	/**
 	* Deletes the page with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param url_id the primary key of the page
+	* @param pageId the primary key of the page
 	* @return the page that was removed
 	* @throws PortalException if a page with the primary key could not be found
 	*/
 	@Override
-	public com.arthurchan35.wcse.model.Page deletePage(long url_id)
+	public com.arthurchan35.wcse.model.Page deletePage(long pageId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _pageLocalService.deletePage(url_id);
+		return _pageLocalService.deletePage(pageId);
 	}
 
 	@Override
-	public com.arthurchan35.wcse.model.Page fetchPage(long url_id) {
-		return _pageLocalService.fetchPage(url_id);
+	public com.arthurchan35.wcse.model.Page fetchPage(long pageId) {
+		return _pageLocalService.fetchPage(pageId);
 	}
 
 	/**
 	* Returns the page with the primary key.
 	*
-	* @param url_id the primary key of the page
+	* @param pageId the primary key of the page
 	* @return the page
 	* @throws PortalException if a page with the primary key could not be found
 	*/
 	@Override
-	public com.arthurchan35.wcse.model.Page getPage(long url_id)
+	public com.arthurchan35.wcse.model.Page getPage(long pageId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _pageLocalService.getPage(url_id);
+		return _pageLocalService.getPage(pageId);
 	}
 
 	/**

@@ -76,10 +76,10 @@ public interface PageLocalService extends BaseLocalService,
 	/**
 	* Creates a new page with the primary key. Does not add the page to the database.
 	*
-	* @param url_id the primary key for the new page
+	* @param pageId the primary key for the new page
 	* @return the new page
 	*/
-	public Page createPage(long url_id);
+	public Page createPage(long pageId);
 
 	/**
 	* Deletes the page from the database. Also notifies the appropriate model listeners.
@@ -93,25 +93,25 @@ public interface PageLocalService extends BaseLocalService,
 	/**
 	* Deletes the page with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param url_id the primary key of the page
+	* @param pageId the primary key of the page
 	* @return the page that was removed
 	* @throws PortalException if a page with the primary key could not be found
 	*/
 	@Indexable(type = IndexableType.DELETE)
-	public Page deletePage(long url_id) throws PortalException;
+	public Page deletePage(long pageId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Page fetchPage(long url_id);
+	public Page fetchPage(long pageId);
 
 	/**
 	* Returns the page with the primary key.
 	*
-	* @param url_id the primary key of the page
+	* @param pageId the primary key of the page
 	* @return the page
 	* @throws PortalException if a page with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Page getPage(long url_id) throws PortalException;
+	public Page getPage(long pageId) throws PortalException;
 
 	/**
 	* Updates the page in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

@@ -49,7 +49,7 @@ public class WordCacheModel implements CacheModel<Word>, Externalizable {
 
 		WordCacheModel wordCacheModel = (WordCacheModel)obj;
 
-		if (word_id == wordCacheModel.word_id) {
+		if (wordId == wordCacheModel.wordId) {
 			return true;
 		}
 
@@ -58,17 +58,17 @@ public class WordCacheModel implements CacheModel<Word>, Externalizable {
 
 	@Override
 	public int hashCode() {
-		return HashUtil.hash(0, word_id);
+		return HashUtil.hash(0, wordId);
 	}
 
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(7);
 
-		sb.append("{word_id=");
-		sb.append(word_id);
-		sb.append(", url_id=");
-		sb.append(url_id);
+		sb.append("{wordId=");
+		sb.append(wordId);
+		sb.append(", pageId=");
+		sb.append(pageId);
 		sb.append(", word=");
 		sb.append(word);
 		sb.append("}");
@@ -80,8 +80,8 @@ public class WordCacheModel implements CacheModel<Word>, Externalizable {
 	public Word toEntityModel() {
 		WordImpl wordImpl = new WordImpl();
 
-		wordImpl.setWord_id(word_id);
-		wordImpl.setUrl_id(url_id);
+		wordImpl.setWordId(wordId);
+		wordImpl.setPageId(pageId);
 
 		if (word == null) {
 			wordImpl.setWord(StringPool.BLANK);
@@ -97,18 +97,18 @@ public class WordCacheModel implements CacheModel<Word>, Externalizable {
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
-		word_id = objectInput.readLong();
+		wordId = objectInput.readLong();
 
-		url_id = objectInput.readLong();
+		pageId = objectInput.readLong();
 		word = objectInput.readUTF();
 	}
 
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
-		objectOutput.writeLong(word_id);
+		objectOutput.writeLong(wordId);
 
-		objectOutput.writeLong(url_id);
+		objectOutput.writeLong(pageId);
 
 		if (word == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -118,7 +118,7 @@ public class WordCacheModel implements CacheModel<Word>, Externalizable {
 		}
 	}
 
-	public long word_id;
-	public long url_id;
+	public long wordId;
+	public long pageId;
 	public String word;
 }

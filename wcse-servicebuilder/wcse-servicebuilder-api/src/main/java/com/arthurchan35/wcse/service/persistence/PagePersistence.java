@@ -100,38 +100,38 @@ public interface PagePersistence extends BasePersistence<Page> {
 	/**
 	* Creates a new page with the primary key. Does not add the page to the database.
 	*
-	* @param url_id the primary key for the new page
+	* @param pageId the primary key for the new page
 	* @return the new page
 	*/
-	public Page create(long url_id);
+	public Page create(long pageId);
 
 	/**
 	* Removes the page with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param url_id the primary key of the page
+	* @param pageId the primary key of the page
 	* @return the page that was removed
 	* @throws NoSuchPageException if a page with the primary key could not be found
 	*/
-	public Page remove(long url_id) throws NoSuchPageException;
+	public Page remove(long pageId) throws NoSuchPageException;
 
 	public Page updateImpl(Page page);
 
 	/**
 	* Returns the page with the primary key or throws a {@link NoSuchPageException} if it could not be found.
 	*
-	* @param url_id the primary key of the page
+	* @param pageId the primary key of the page
 	* @return the page
 	* @throws NoSuchPageException if a page with the primary key could not be found
 	*/
-	public Page findByPrimaryKey(long url_id) throws NoSuchPageException;
+	public Page findByPrimaryKey(long pageId) throws NoSuchPageException;
 
 	/**
 	* Returns the page with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param url_id the primary key of the page
+	* @param pageId the primary key of the page
 	* @return the page, or <code>null</code> if a page with the primary key could not be found
 	*/
-	public Page fetchByPrimaryKey(long url_id);
+	public Page fetchByPrimaryKey(long pageId);
 
 	@Override
 	public java.util.Map<java.io.Serializable, Page> fetchByPrimaryKeys(

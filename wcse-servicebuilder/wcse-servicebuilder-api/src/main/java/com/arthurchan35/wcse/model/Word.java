@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.model.PersistedModel;
 import com.liferay.portal.kernel.util.Accessor;
 
 /**
- * The extended model interface for the Word service. Represents a row in the &quot;UrlStorage_Word&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the Word service. Represents a row in the &quot;PagesStorage_Word&quot; database table, with each column mapped to a property of this class.
  *
  * @author Arthur Chan
  * @see WordModel
@@ -40,7 +40,7 @@ public interface Word extends WordModel, PersistedModel {
 	public static final Accessor<Word, Long> WORD_ID_ACCESSOR = new Accessor<Word, Long>() {
 			@Override
 			public Long get(Word word) {
-				return word.getWord_id();
+				return word.getWordId();
 			}
 
 			@Override

@@ -56,7 +56,7 @@ public class PageWrapper implements Page, ModelWrapper<Page> {
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("url_id", getUrl_id());
+		attributes.put("pageId", getPageId());
 		attributes.put("url", getUrl());
 		attributes.put("description", getDescription());
 		attributes.put("image", getImage());
@@ -66,10 +66,10 @@ public class PageWrapper implements Page, ModelWrapper<Page> {
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long url_id = (Long)attributes.get("url_id");
+		Long pageId = (Long)attributes.get("pageId");
 
-		if (url_id != null) {
-			setUrl_id(url_id);
+		if (pageId != null) {
+			setPageId(pageId);
 		}
 
 		String url = (String)attributes.get("url");
@@ -187,6 +187,16 @@ public class PageWrapper implements Page, ModelWrapper<Page> {
 	}
 
 	/**
+	* Returns the page ID of this page.
+	*
+	* @return the page ID of this page
+	*/
+	@Override
+	public long getPageId() {
+		return _page.getPageId();
+	}
+
+	/**
 	* Returns the primary key of this page.
 	*
 	* @return the primary key of this page
@@ -194,16 +204,6 @@ public class PageWrapper implements Page, ModelWrapper<Page> {
 	@Override
 	public long getPrimaryKey() {
 		return _page.getPrimaryKey();
-	}
-
-	/**
-	* Returns the url_id of this page.
-	*
-	* @return the url_id of this page
-	*/
-	@Override
-	public long getUrl_id() {
-		return _page.getUrl_id();
 	}
 
 	@Override
@@ -258,6 +258,16 @@ public class PageWrapper implements Page, ModelWrapper<Page> {
 	}
 
 	/**
+	* Sets the page ID of this page.
+	*
+	* @param pageId the page ID of this page
+	*/
+	@Override
+	public void setPageId(long pageId) {
+		_page.setPageId(pageId);
+	}
+
+	/**
 	* Sets the primary key of this page.
 	*
 	* @param primaryKey the primary key of this page
@@ -280,16 +290,6 @@ public class PageWrapper implements Page, ModelWrapper<Page> {
 	@Override
 	public void setUrl(java.lang.String url) {
 		_page.setUrl(url);
-	}
-
-	/**
-	* Sets the url_id of this page.
-	*
-	* @param url_id the url_id of this page
-	*/
-	@Override
-	public void setUrl_id(long url_id) {
-		_page.setUrl_id(url_id);
 	}
 
 	@Override

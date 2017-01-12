@@ -58,38 +58,38 @@ public interface WordPersistence extends BasePersistence<Word> {
 	/**
 	* Creates a new word with the primary key. Does not add the word to the database.
 	*
-	* @param word_id the primary key for the new word
+	* @param wordId the primary key for the new word
 	* @return the new word
 	*/
-	public Word create(long word_id);
+	public Word create(long wordId);
 
 	/**
 	* Removes the word with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param word_id the primary key of the word
+	* @param wordId the primary key of the word
 	* @return the word that was removed
 	* @throws NoSuchWordException if a word with the primary key could not be found
 	*/
-	public Word remove(long word_id) throws NoSuchWordException;
+	public Word remove(long wordId) throws NoSuchWordException;
 
 	public Word updateImpl(Word word);
 
 	/**
 	* Returns the word with the primary key or throws a {@link NoSuchWordException} if it could not be found.
 	*
-	* @param word_id the primary key of the word
+	* @param wordId the primary key of the word
 	* @return the word
 	* @throws NoSuchWordException if a word with the primary key could not be found
 	*/
-	public Word findByPrimaryKey(long word_id) throws NoSuchWordException;
+	public Word findByPrimaryKey(long wordId) throws NoSuchWordException;
 
 	/**
 	* Returns the word with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param word_id the primary key of the word
+	* @param wordId the primary key of the word
 	* @return the word, or <code>null</code> if a word with the primary key could not be found
 	*/
-	public Word fetchByPrimaryKey(long word_id);
+	public Word fetchByPrimaryKey(long wordId);
 
 	@Override
 	public java.util.Map<java.io.Serializable, Word> fetchByPrimaryKeys(

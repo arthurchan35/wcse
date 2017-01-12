@@ -33,8 +33,8 @@ public class WordSoap implements Serializable {
 	public static WordSoap toSoapModel(Word model) {
 		WordSoap soapModel = new WordSoap();
 
-		soapModel.setWord_id(model.getWord_id());
-		soapModel.setUrl_id(model.getUrl_id());
+		soapModel.setWordId(model.getWordId());
+		soapModel.setPageId(model.getPageId());
 		soapModel.setWord(model.getWord());
 
 		return soapModel;
@@ -81,27 +81,27 @@ public class WordSoap implements Serializable {
 	}
 
 	public long getPrimaryKey() {
-		return _word_id;
+		return _wordId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setWord_id(pk);
+		setWordId(pk);
 	}
 
-	public long getWord_id() {
-		return _word_id;
+	public long getWordId() {
+		return _wordId;
 	}
 
-	public void setWord_id(long word_id) {
-		_word_id = word_id;
+	public void setWordId(long wordId) {
+		_wordId = wordId;
 	}
 
-	public long getUrl_id() {
-		return _url_id;
+	public long getPageId() {
+		return _pageId;
 	}
 
-	public void setUrl_id(long url_id) {
-		_url_id = url_id;
+	public void setPageId(long pageId) {
+		_pageId = pageId;
 	}
 
 	public String getWord() {
@@ -112,7 +112,7 @@ public class WordSoap implements Serializable {
 		_word = word;
 	}
 
-	private long _word_id;
-	private long _url_id;
+	private long _wordId;
+	private long _pageId;
 	private String _word;
 }
