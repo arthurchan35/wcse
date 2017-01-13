@@ -10,5 +10,5 @@ dependencies {
 buildService {
 	apiDir = "../wcse-servicebuilder-api/src/main/java"
 	osgiModule = true
-	propsUtil = "com.example.service.util.PropsUtil"
+	propsUtil = "com.arthurchan35.service.util.PropsUtil"
 }

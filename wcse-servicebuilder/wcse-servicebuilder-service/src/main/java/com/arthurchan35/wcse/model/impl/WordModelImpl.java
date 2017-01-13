@@ -84,10 +84,10 @@ public class WordModelImpl extends BaseModelImpl<Word> implements WordModel {
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.example.service.util.PropsUtil.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.arthurchan35.service.util.PropsUtil.get(
 				"value.object.entity.cache.enabled.com.arthurchan35.wcse.model.Word"),
 			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.example.service.util.PropsUtil.get(
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.arthurchan35.service.util.PropsUtil.get(
 				"value.object.finder.cache.enabled.com.arthurchan35.wcse.model.Word"),
 			true);
 	public static final boolean COLUMN_BITMASK_ENABLED = false;
@@ -132,7 +132,7 @@ public class WordModelImpl extends BaseModelImpl<Word> implements WordModel {
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.example.service.util.PropsUtil.get(
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.arthurchan35.service.util.PropsUtil.get(
 				"lock.expiration.time.com.arthurchan35.wcse.model.Word"));
 
 	public WordModelImpl() {

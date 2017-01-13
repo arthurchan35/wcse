@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.example.service.util;
+package com.arthurchan35.service.util;
 
 import aQute.bnd.annotation.ProviderType;
 
