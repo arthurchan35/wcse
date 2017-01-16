@@ -18,6 +18,8 @@ import aQute.bnd.annotation.ProviderType;
 
 import java.io.Serializable;
 
+import java.sql.Blob;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -113,16 +115,16 @@ public class PageSoap implements Serializable {
 		_description = description;
 	}
 
-	public String getImage() {
+	public Blob getImage() {
 		return _image;
 	}
 
-	public void setImage(String image) {
+	public void setImage(Blob image) {
 		_image = image;
 	}
 
 	private long _pageId;
 	private String _url;
 	private String _description;
-	private String _image;
+	private Blob _image;
 }

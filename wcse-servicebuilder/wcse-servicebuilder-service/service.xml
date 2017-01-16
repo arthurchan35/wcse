@@ -11,7 +11,7 @@
 		<column name="pageId" type="long" primary="true"></column>
 		<column name="url" type="String"></column>
 		<column name="description" type="String"></column>
-		<column name="image" type="String"></column>
+		<column name="image" type="Blob"></column>
 
 		<finder name="URL" return-type="Page" unique="true">
 			<finder-column name="url" />

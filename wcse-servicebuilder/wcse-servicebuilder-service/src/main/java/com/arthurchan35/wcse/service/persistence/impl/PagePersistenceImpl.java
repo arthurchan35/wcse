@@ -551,8 +551,12 @@ public class PagePersistenceImpl extends BasePersistenceImpl<Page>
 				page.setNew(false);
 			}
 			else {
-				page = (Page)session.merge(page);
+				session.evict(page);
+				session.saveOrUpdate(page);
 			}
+
+			session.flush();
+			session.clear();
 		}
 		catch (Exception e) {
 			throw processException(e);

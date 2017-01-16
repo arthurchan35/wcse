@@ -5,7 +5,7 @@
 		<field name="pageId" type="long" />
 		<field name="url" type="String" />
 		<field name="description" type="String" />
-		<field name="image" type="String" />
+		<field name="image" type="Blob" />
 	</model>
 	<model name="com.arthurchan35.wcse.model.Word">
 		<field name="wordId" type="long" />

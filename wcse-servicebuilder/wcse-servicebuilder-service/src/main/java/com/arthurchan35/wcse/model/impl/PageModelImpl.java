@@ -17,8 +17,10 @@ package com.arthurchan35.wcse.model.impl;
 import aQute.bnd.annotation.ProviderType;
 
 import com.arthurchan35.wcse.model.Page;
+import com.arthurchan35.wcse.model.PageImageBlobModel;
 import com.arthurchan35.wcse.model.PageModel;
 import com.arthurchan35.wcse.model.PageSoap;
+import com.arthurchan35.wcse.service.PageLocalServiceUtil;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
@@ -35,6 +37,7 @@ import com.liferay.portal.kernel.util.StringPool;
 
 import java.io.Serializable;
 
+import java.sql.Blob;
 import java.sql.Types;
 
 import java.util.ArrayList;
@@ -68,7 +71,7 @@ public class PageModelImpl extends BaseModelImpl<Page> implements PageModel {
 			{ "pageId", Types.BIGINT },
 			{ "url", Types.VARCHAR },
 			{ "description", Types.VARCHAR },
-			{ "image", Types.VARCHAR }
+			{ "image", Types.BLOB }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
@@ -76,10 +79,10 @@ public class PageModelImpl extends BaseModelImpl<Page> implements PageModel {
 		TABLE_COLUMNS_MAP.put("pageId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("url", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("image", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("image", Types.BLOB);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table PagesStorage_Page (pageId LONG not null primary key,url VARCHAR(75) null,description VARCHAR(75) null,image VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table PagesStorage_Page (pageId LONG not null primary key,url VARCHAR(75) null,description VARCHAR(75) null,image BLOB)";
 	public static final String TABLE_SQL_DROP = "drop table PagesStorage_Page";
 	public static final String ORDER_BY_JPQL = " ORDER BY page.pageId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY PagesStorage_Page.pageId ASC";
@@ -210,7 +213,7 @@ public class PageModelImpl extends BaseModelImpl<Page> implements PageModel {
 			setDescription(description);
 		}
 
-		String image = (String)attributes.get("image");
+		Blob image = (Blob)attributes.get("image");
 
 		if (image != null) {
 			setImage(image);
@@ -272,18 +275,32 @@ public class PageModelImpl extends BaseModelImpl<Page> implements PageModel {
 
 	@JSON
 	@Override
-	public String getImage() {
-		if (_image == null) {
-			return StringPool.BLANK;
+	public Blob getImage() {
+		if (_imageBlobModel == null) {
+			try {
+				_imageBlobModel = PageLocalServiceUtil.getImageBlobModel(getPrimaryKey());
+			}
+			catch (Exception e) {
+			}
 		}
-		else {
-			return _image;
+
+		Blob blob = null;
+
+		if (_imageBlobModel != null) {
+			blob = _imageBlobModel.getImageBlob();
 		}
+
+		return blob;
 	}
 
 	@Override
-	public void setImage(String image) {
-		_image = image;
+	public void setImage(Blob image) {
+		if (_imageBlobModel == null) {
+			_imageBlobModel = new PageImageBlobModel(getPrimaryKey(), image);
+		}
+		else {
+			_imageBlobModel.setImageBlob(image);
+		}
 	}
 
 	public long getColumnBitmask() {
@@ -320,7 +337,6 @@ public class PageModelImpl extends BaseModelImpl<Page> implements PageModel {
 		pageImpl.setPageId(getPageId());
 		pageImpl.setUrl(getUrl());
 		pageImpl.setDescription(getDescription());
-		pageImpl.setImage(getImage());
 
 		pageImpl.resetOriginalValues();
 
@@ -385,6 +401,8 @@ public class PageModelImpl extends BaseModelImpl<Page> implements PageModel {
 
 		pageModelImpl._originalUrl = pageModelImpl._url;
 
+		pageModelImpl._imageBlobModel = null;
+
 		pageModelImpl._columnBitmask = 0;
 	}
 
@@ -410,14 +428,6 @@ public class PageModelImpl extends BaseModelImpl<Page> implements PageModel {
 			pageCacheModel.description = null;
 		}
 
-		pageCacheModel.image = getImage();
-
-		String image = pageCacheModel.image;
-
-		if ((image != null) && (image.length() == 0)) {
-			pageCacheModel.image = null;
-		}
-
 		return pageCacheModel;
 	}
 
@@ -431,9 +441,6 @@ public class PageModelImpl extends BaseModelImpl<Page> implements PageModel {
 		sb.append(getUrl());
 		sb.append(", description=");
 		sb.append(getDescription());
-		sb.append(", image=");
-		sb.append(getImage());
-		sb.append("}");
 
 		return sb.toString();
 	}
@@ -458,10 +465,6 @@ public class PageModelImpl extends BaseModelImpl<Page> implements PageModel {
 			"<column><column-name>description</column-name><column-value><![CDATA[");
 		sb.append(getDescription());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>image</column-name><column-value><![CDATA[");
-		sb.append(getImage());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -476,7 +479,7 @@ public class PageModelImpl extends BaseModelImpl<Page> implements PageModel {
 	private String _url;
 	private String _originalUrl;
 	private String _description;
-	private String _image;
+	private PageImageBlobModel _imageBlobModel;
 	private long _columnBitmask;
 	private Page _escapedModel;
 }

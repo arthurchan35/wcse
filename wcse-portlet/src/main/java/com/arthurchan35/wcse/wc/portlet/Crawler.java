@@ -27,7 +27,7 @@ public class Crawler {
 		root = "localHost:8080";
 	}
 
-	public static Crawler getCrawlerSingleton() {
+	public static Crawler getSingleton() {
 		if (crawler == null) crawler = new Crawler();
 		return crawler;
 	}
@@ -37,7 +37,7 @@ public class Crawler {
 		this.domain = Validator.isNotNull(domain) ? domain : this.domain;
 		this.root = Validator.isNotNull(root) ? root : this.root;
 		
-		queue.offer(this.root);
+		queue.offer(root);
 		fetchURL();
 	}
 
@@ -52,7 +52,7 @@ public class Crawler {
 			String descriptionElementStr = descriptionElement.text();
 			int descriptionLength = description.length();
 			int elementLength = descriptionElementStr.length();
-			if (descriptionLength + elementLength <= 128 - 2) {
+			if (descriptionLength + elementLength <= 74) {
 				if (description.length() > 0)
 					description.append(' ');
 				description.append(descriptionElementStr);
@@ -80,7 +80,7 @@ public class Crawler {
 		if (ele != null) image = ele.absUrl("src");
 
 		//service builder auto-handles transaction roll back
-		Page page = PageLocalServiceUtil.addPage(urlScanned, description.toString(), image, list);
+		Page page = PageLocalServiceUtil.addPage(urlScanned, description.toString(), image.getBytes(), list);
 	}
 
 	/* BFS traversing websites */
@@ -94,15 +94,19 @@ public class Crawler {
 				url = queue.poll();
 				continue;
 			}
-			Page page = PageUtil.fetchByURL(url);
-			if (page != null) {
+
+			try {
+				Page page = PageLocalServiceUtil.fetchByURL(url);
+				if (page != null) throw new Exception();
+			}
+			catch (Exception e) {
 				url = queue.poll();
 				continue;
 			}
 
 			Document doc = null;
 			try {
-			doc = Jsoup.connect(url).userAgent("Mozilla").get();
+				doc = Jsoup.connect(url).userAgent("Mozilla").get();
 			}
 			catch (Exception hse) {
 				System.out.println("connection error to this url: " + url + " Skiping");

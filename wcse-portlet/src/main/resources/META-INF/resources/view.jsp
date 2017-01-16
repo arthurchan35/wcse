@@ -1,5 +1,13 @@
 <%@ include file="/init.jsp" %>
 
-<p>
-	<b><liferay-ui:message key="wcse_portlet_WcsePortletmvcportlet.caption"/></b>
-</p>
+<portlet:actionURL name="startCrawler" var="startCrawlerURL" />
+
+<aui:form action="<%= startCrawlerURL %>" method="post" name="fm">
+
+		<aui:input name="maxurl" type="textarea" />
+		<aui:input name="domain" type="textarea" />
+		<aui:input name="root" type="textarea" />
+
+		<aui:button onClick="" type="submit" value="send" />
+
+</aui:form>

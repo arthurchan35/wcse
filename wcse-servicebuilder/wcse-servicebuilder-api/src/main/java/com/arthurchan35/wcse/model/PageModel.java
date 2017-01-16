@@ -25,6 +25,8 @@ import com.liferay.portal.kernel.service.ServiceContext;
 
 import java.io.Serializable;
 
+import java.sql.Blob;
+
 /**
  * The base model interface for the Page service. Represents a row in the &quot;PagesStorage_Page&quot; database table, with each column mapped to a property of this class.
  *
@@ -109,15 +111,14 @@ public interface PageModel extends BaseModel<Page> {
 	 *
 	 * @return the image of this page
 	 */
-	@AutoEscape
-	public String getImage();
+	public Blob getImage();
 
 	/**
 	 * Sets the image of this page.
 	 *
 	 * @param image the image of this page
 	 */
-	public void setImage(String image);
+	public void setImage(Blob image);
 
 	@Override
 	public boolean isNew();

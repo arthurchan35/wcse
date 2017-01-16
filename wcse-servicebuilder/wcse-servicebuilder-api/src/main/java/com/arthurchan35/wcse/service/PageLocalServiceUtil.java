@@ -54,8 +54,8 @@ public class PageLocalServiceUtil {
 	}
 
 	public static com.arthurchan35.wcse.model.Page addPage(
-		java.lang.String url, java.lang.String description,
-		java.lang.String image, java.util.List<java.lang.String> words) {
+		java.lang.String url, java.lang.String description, byte[] image,
+		java.util.List<java.lang.String> words) {
 		return getService().addPage(url, description, image, words);
 	}
 
@@ -92,6 +92,11 @@ public class PageLocalServiceUtil {
 		return getService().deletePage(pageId);
 	}
 
+	public static com.arthurchan35.wcse.model.Page fetchByURL(
+		java.lang.String url) {
+		return getService().fetchByURL(url);
+	}
+
 	public static com.arthurchan35.wcse.model.Page fetchPage(long pageId) {
 		return getService().fetchPage(pageId);
 	}
@@ -117,6 +122,11 @@ public class PageLocalServiceUtil {
 	public static com.arthurchan35.wcse.model.Page updatePage(
 		com.arthurchan35.wcse.model.Page page) {
 		return getService().updatePage(page);
+	}
+
+	public static com.arthurchan35.wcse.model.PageImageBlobModel getImageBlobModel(
+		java.io.Serializable primaryKey) {
+		return getService().getImageBlobModel(primaryKey);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {

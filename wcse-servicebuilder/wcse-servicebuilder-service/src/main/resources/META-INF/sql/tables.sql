@@ -2,7 +2,7 @@ create table PagesStorage_Page (
 	pageId LONG not null primary key,
 	url VARCHAR(75) null,
 	description VARCHAR(75) null,
-	image VARCHAR(75) null
+	image BLOB
 );
 
 create table PagesStorage_Word (
