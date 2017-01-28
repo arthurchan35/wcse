@@ -42,6 +42,8 @@ public class WebCrawlerPortlet extends MVCPortlet {
 		System.out.println("maxURL1: " + maxURL + " domain1: " + domain + " root1: " + root);
 
 		crawler.start(maxURL, domain, root);
+		
+		System.out.println("finished crawlering");
 
 	}
 }
