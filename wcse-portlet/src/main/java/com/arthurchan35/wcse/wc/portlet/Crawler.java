@@ -116,9 +116,6 @@ public class Crawler {
 		long totalPages = PageLocalServiceUtil.getPagesCount();
 
 		while (url != null && totalPages <= maxURL) {
-			url = trimURL(url, domain);
-			
-			if (url.equals("")) continue;
 
 			try {
 				Page page = PageLocalServiceUtil.fetchByURL(url);
@@ -143,10 +140,18 @@ public class Crawler {
 			totalPages++;
 
 			Elements links = doc.select("a[href]");
-
-			for (Element link : links) 
-				queue.offer(link.absUrl("href"));
-
+			
+			HashSet<String> uniqueURL = new HashSet<String>();
+			for (Element link : links) {
+				String linkStr = link.absUrl("href");
+				System.out.println("before: " + linkStr);
+				linkStr = trimURL(linkStr, domain);
+				if (! linkStr.equals("") && !uniqueURL.contains(linkStr)) {
+					uniqueURL.add(linkStr);
+					queue.offer(linkStr);
+				}
+				System.out.println("after: " + linkStr);
+			}
 		} 
 	}
 }
