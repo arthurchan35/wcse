@@ -74,8 +74,32 @@ public class PageLocalServiceImpl extends PageLocalServiceBaseImpl {
 		
 		return page;
 	}
-	
-	public List<Page> findPagesByUrlIds(String urls, int start, int end) {
+
+	public List<Page> findPagesByWords(String wordsInput, int start, int end) {
+		StringBuilder wordsBuilder = new StringBuilder();
+		String wordsList[] = wordsInput.split("[\\s|\\x80-\\xff]+");
+		for (String word : wordsList) {
+			wordsBuilder.append('\'');
+			wordsBuilder.append(word);
+			wordsBuilder.append('\'');
+			wordsBuilder.append(',');
+		}
+		wordsBuilder.setLength(wordsBuilder.length() - 1);
+		String words = wordsBuilder.toString();
+		List<Long> urlIDs = wordFinder.findUrlIdsByWords(words, start, end);
+		return findPagesByUrlIds(urlIDs, start, end);
+	}
+
+	public List<Page> findPagesByUrlIds(List<Long> urlIDs, int start, int end) {
+		StringBuilder urlsBuilder = new StringBuilder();
+		for (long urlID : urlIDs) {
+			urlsBuilder.append('\'');
+			urlsBuilder.append(urlID);
+			urlsBuilder.append('\'');
+			urlsBuilder.append(',');
+		}
+		urlsBuilder.setLength(urlsBuilder.length() - 1);
+		String urls = urlsBuilder.toString();
 		return pageFinder.findPagesByUrlIds(urls, start, end);
 	}
 

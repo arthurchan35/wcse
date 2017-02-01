@@ -225,8 +225,13 @@ public class PageLocalServiceUtil {
 	}
 
 	public static java.util.List<com.arthurchan35.wcse.model.Page> findPagesByUrlIds(
-		java.lang.String urls, int start, int end) {
-		return getService().findPagesByUrlIds(urls, start, end);
+		java.util.List<java.lang.Long> urlIDs, int start, int end) {
+		return getService().findPagesByUrlIds(urlIDs, start, end);
+	}
+
+	public static java.util.List<com.arthurchan35.wcse.model.Page> findPagesByWords(
+		java.lang.String wordsInput, int start, int end) {
+		return getService().findPagesByWords(wordsInput, start, end);
 	}
 
 	/**

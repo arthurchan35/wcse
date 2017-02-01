@@ -34,9 +34,7 @@ public class WordFinderImpl  extends WordFinderBaseImpl implements WordFinder {
 			qPos.add(words);
 
 			return (List<Long>)QueryUtil.list(q, getDialect(), start, end);
-//			for (Object[] columns : rows) {
-//				urlIds.add((long)columns[0]);
-//			}
+
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
