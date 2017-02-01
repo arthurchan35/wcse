@@ -59,6 +59,8 @@ public class Crawler {
 	
 		List<String> list = new ArrayList<>();
 	
+		HashSet<String> set = new HashSet<>();// using hash set to remove duplicates words in a page
+
 		for (Element descriptionElement : descriptionElements) {
 			String descriptionElementStr = descriptionElement.text();
 			int descriptionLength = description.length();
@@ -69,8 +71,6 @@ public class Crawler {
 				description.append(descriptionElementStr);
 			}
 			String []spl = descriptionElementStr.split("[\\s|\\x80-\\xff]+");
-			
-			HashSet<String> set = new HashSet<>();// using hash set to remove duplicates words in a page
 	
 			for (String word : spl) {
 				word = word.replaceAll("^[^a-zA-Z0-9\\s]+|[^a-zA-Z0-9\\s]+$", ""); // removing leading and trailing non alphabetics
