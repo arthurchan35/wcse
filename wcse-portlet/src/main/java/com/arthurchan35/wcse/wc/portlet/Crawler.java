@@ -8,7 +8,6 @@ import org.jsoup.select.Elements;
 
 import com.arthurchan35.wcse.model.Page;
 import com.arthurchan35.wcse.service.PageLocalServiceUtil;
-import com.arthurchan35.wcse.service.persistence.PageUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 public class Crawler {
@@ -122,6 +121,7 @@ public class Crawler {
 				if (page != null) throw new Exception();
 			}
 			catch (Exception e) {
+				System.out.println(url + " exist in db");
 				url = queue.poll();
 				continue;
 			}
@@ -144,13 +144,11 @@ public class Crawler {
 			HashSet<String> uniqueURL = new HashSet<String>();
 			for (Element link : links) {
 				String linkStr = link.absUrl("href");
-				System.out.println("before: " + linkStr);
 				linkStr = trimURL(linkStr, domain);
 				if (! linkStr.equals("") && !uniqueURL.contains(linkStr)) {
 					uniqueURL.add(linkStr);
 					queue.offer(linkStr);
 				}
-				System.out.println("after: " + linkStr);
 			}
 		} 
 	}
