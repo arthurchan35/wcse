@@ -22,6 +22,6 @@ import aQute.bnd.annotation.ProviderType;
  */
 @ProviderType
 public interface WordFinder {
-	public java.util.List<java.lang.Long> findUrlIdsByWords(
+	public java.util.List<java.lang.Long> findPageIDsByWords(
 		java.lang.String words, int start, int end);
 }

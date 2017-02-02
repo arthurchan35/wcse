@@ -84,23 +84,29 @@ public class PageLocalServiceImpl extends PageLocalServiceBaseImpl {
 			wordsBuilder.append('\'');
 			wordsBuilder.append(',');
 		}
-		wordsBuilder.setLength(wordsBuilder.length() - 1);
+		
+		if (wordsBuilder.length() > 0)
+			wordsBuilder.setLength(wordsBuilder.length() - 1);
+		
 		String words = wordsBuilder.toString();
-		List<Long> urlIDs = wordFinder.findUrlIdsByWords(words, start, end);
-		return findPagesByUrlIds(urlIDs, start, end);
+		List<Long> pageIDs = wordFinder.findPageIDsByWords(words, start, end);
+		return findPagesByPageIDs(pageIDs, start, end);
 	}
 
-	public List<Page> findPagesByUrlIds(List<Long> urlIDs, int start, int end) {
+	public List<Page> findPagesByPageIDs(List<Long> pageIDs, int start, int end) {
 		StringBuilder urlsBuilder = new StringBuilder();
-		for (long urlID : urlIDs) {
+		for (long pageID : pageIDs) {
 			urlsBuilder.append('\'');
-			urlsBuilder.append(urlID);
+			urlsBuilder.append(pageID);
 			urlsBuilder.append('\'');
 			urlsBuilder.append(',');
 		}
-		urlsBuilder.setLength(urlsBuilder.length() - 1);
+		
+		if (urlsBuilder.length() > 0)
+			urlsBuilder.setLength(urlsBuilder.length() - 1);
+		
 		String urls = urlsBuilder.toString();
-		return pageFinder.findPagesByUrlIds(urls, start, end);
+		return pageFinder.findPagesByPageIDs(urls, start, end);
 	}
 
 	public Page fetchByURL(String url) {

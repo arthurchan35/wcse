@@ -89,7 +89,7 @@ public class Crawler {
 		Element ele = imageElements.last();
 		
 		if (ele != null) image = ele.absUrl("src");
-	
+		System.out.println("image is: " + image);
 		//service builder auto-handles transaction roll back
 		Page page = PageLocalServiceUtil.addPage(urlScanned, description.toString(), image.getBytes(), list);
 	}

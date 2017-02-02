@@ -7,8 +7,13 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
+<%@ page import="com.arthurchan35.wcse.service.PageLocalServiceUtil" %>
 
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
+<%@ page import="com.liferay.portal.kernel.util.Constants" %>
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+
+<%@ page import="java.sql.Blob" %>
 <liferay-theme:defineObjects />
 
 <portlet:defineObjects />

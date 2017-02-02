@@ -22,6 +22,6 @@ import aQute.bnd.annotation.ProviderType;
  */
 @ProviderType
 public interface PageFinder {
-	public java.util.List<com.arthurchan35.wcse.model.Page> findPagesByUrlIds(
+	public java.util.List<com.arthurchan35.wcse.model.Page> findPagesByPageIDs(
 		java.lang.String urls, int start, int end);
 }

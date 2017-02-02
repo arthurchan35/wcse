@@ -216,9 +216,9 @@ public class WordLocalServiceWrapper implements WordLocalService,
 	}
 
 	@Override
-	public java.util.List<java.lang.Long> findUrlIdsByWords(
+	public java.util.List<java.lang.Long> findPageIDsByWords(
 		java.lang.String words, int start, int end) {
-		return _wordLocalService.findUrlIdsByWords(words, start, end);
+		return _wordLocalService.findPageIDsByWords(words, start, end);
 	}
 
 	/**

@@ -1,36 +1,42 @@
 <%@ include file="/init.jsp" %>
 
+<portlet:actionURL name="search" var="searchURL" windowState="normal" />
+
+<aui:form action="<%= searchURL %>" method="post" name="fm">
+	<aui:input name="saveLastPath" type="hidden" value="<%= false %>" />
+	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
+
+	<aui:input label="search" name="search" required="<%= true %>" type="text" />
+
+	<aui:button-row>
+		<aui:button type="submit" value="submit" />
+	</aui:button-row>
+</aui:form>
+
 <liferay-ui:search-container emptyResultsMessage="no-results-found-please-try-a-different-search-criteria">
+	
 	<liferay-ui:search-container-results>
-
-<%
-	results = SimpleUserLocalServiceUtil.findByZip(zip, searchContainer.getStart(), searchContainer.getEnd());
-	total = SimpleUserLocalServiceUtil.countByZip(zip);
-	searchContainer.setResults(results);
-	searchContainer.setTotal(total);
-%>
-
+		<%
+			String wordsInput = ParamUtil.getString(request, "search");
+			results = PageLocalServiceUtil.findPagesByWords(wordsInput, searchContainer.getStart(), searchContainer.getEnd());
+			total = results.size();
+			searchContainer.setResults(results);
+			searchContainer.setTotal(total);
+		%>
 	</liferay-ui:search-container-results>
-	<liferay-ui:search-container-row
-		className="com.liferay.portal.model.User"
-		escapedModel="<%= true %>"
-		keyProperty="userId"
-		modelVar="currUser"
-	>
+	
+	<liferay-ui:search-container-row className="com.arthurchan35.wcse.model.Page" escapedModel="<%= true %>" keyProperty="pageId" modelVar="currPage" >
 
 		<%
-		StringBundler sb = new StringBundler(7);
-		sb.append(currUser.getFirstName());
-		sb.append(' ');
-		sb.append(currUser.getLastName().charAt(0));
-		sb.append(". (");
-		sb.append(currUser.getScreenName());
-		sb.append(") - ");
-		sb.append(currUser.getEmailAddress());
-		String userInfo = sb.toString();
+			String url = currPage.getUrl();
+			String des = currPage.getDescription();
+			Blob imgBlob = currPage.getImage();
+			String img = new String(imgBlob.getBytes(1, (int) imgBlob.length()));
 		%>
 
-		<liferay-ui:search-container-column-text name="userInfo" value="<%= userInfo %>" />
+		<liferay-ui:search-container-column-text name="pageURL" value="<%= url %>" />
+		<liferay-ui:search-container-column-text name="pageDescription" value="<%= des %>" />
+		<liferay-ui:search-container-column-image src="<%= img %>" />
 	</liferay-ui:search-container-row>
 
 	<liferay-ui:search-iterator />

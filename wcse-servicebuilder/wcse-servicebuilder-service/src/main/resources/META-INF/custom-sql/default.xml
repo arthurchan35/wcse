@@ -2,12 +2,12 @@
 
 
 <custom-sql>
-	<sql id="com.arthurchan35.wcse.model.Word.findUrlIdsByWords">
+	<sql id="com.arthurchan35.wcse.service.persistence.WordFinder.findPageIDsByWords">
 			<![CDATA[
 				SELECT
-					url_id
+					pageId
 				FROM
-					Word
+					pagesstorage_word
 				WHERE
 					word
 				IN
@@ -15,14 +15,14 @@
 			]]>
 	</sql>
 	
-	<sql id="com.arthurchan35.wcse.model.Page.findPagesByUrlIds">
+	<sql id="com.arthurchan35.wcse.service.persistence.PageFinder.findPagesByPageIDs">
 			<![CDATA[
 				SELECT
-					{Page_Entity.*}
+					{pagesstorage_page.*}
 				FROM
-					Page
+					pagesstorage_page
 				WHERE
-					url_id
+					pageId
 				IN
 					(?)
 			]]>

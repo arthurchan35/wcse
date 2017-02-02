@@ -208,9 +208,9 @@ public class WordLocalServiceUtil {
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
-	public static java.util.List<java.lang.Long> findUrlIdsByWords(
+	public static java.util.List<java.lang.Long> findPageIDsByWords(
 		java.lang.String words, int start, int end) {
-		return getService().findUrlIdsByWords(words, start, end);
+		return getService().findPageIDsByWords(words, start, end);
 	}
 
 	/**

@@ -14,16 +14,16 @@ import com.liferay.portal.kernel.exception.SystemException;
 
 public class WordFinderImpl  extends WordFinderBaseImpl implements WordFinder {
 
-	public static String FIND_URLIDS_BY_WORDS = Word.class.getName() + ".findUrlIdsByWords";
+	public static String FIND_PAGEIDS_BY_WORDS = WordFinder.class.getName() + ".findPageIDsByWords";
 	
 	@Override
-	public List<Long> findUrlIdsByWords(String words, int start, int end) {
+	public List<Long> findPageIDsByWords(String words, int start, int end) {
 		Session session = null;
 		
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(getClass(), FIND_URLIDS_BY_WORDS);
+			String sql = CustomSQLUtil.get(getClass(), FIND_PAGEIDS_BY_WORDS);
 
 			SQLQuery q = session.createSQLQuery(sql);
 

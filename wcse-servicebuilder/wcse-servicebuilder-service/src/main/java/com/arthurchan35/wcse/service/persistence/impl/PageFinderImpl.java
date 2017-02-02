@@ -14,16 +14,16 @@ import com.liferay.portal.kernel.exception.SystemException;
 
 public class PageFinderImpl extends PageFinderBaseImpl implements PageFinder{
 
-	public static String FIND_PAGES_BY_URLIDS = Page.class.getName() + ".findPagesByUrlIds";
+	public static String FIND_PAGES_BY_PAGEIDS = PageFinder.class.getName() + ".findPagesByPageIDs";
 	
 	@Override
-	public List<Page> findPagesByUrlIds(String urls, int start, int end) {
+	public List<Page> findPagesByPageIDs(String urls, int start, int end) {
 		Session session = null;
 		
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(getClass(), FIND_PAGES_BY_URLIDS);
+			String sql = CustomSQLUtil.get(getClass(), FIND_PAGES_BY_PAGEIDS);
 
 			SQLQuery q = session.createSQLQuery(sql);
 

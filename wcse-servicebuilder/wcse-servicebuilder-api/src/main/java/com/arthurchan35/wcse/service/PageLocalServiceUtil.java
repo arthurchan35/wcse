@@ -224,9 +224,9 @@ public class PageLocalServiceUtil {
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
-	public static java.util.List<com.arthurchan35.wcse.model.Page> findPagesByUrlIds(
-		java.util.List<java.lang.Long> urlIDs, int start, int end) {
-		return getService().findPagesByUrlIds(urlIDs, start, end);
+	public static java.util.List<com.arthurchan35.wcse.model.Page> findPagesByPageIDs(
+		java.util.List<java.lang.Long> pageIDs, int start, int end) {
+		return getService().findPagesByPageIDs(pageIDs, start, end);
 	}
 
 	public static java.util.List<com.arthurchan35.wcse.model.Page> findPagesByWords(

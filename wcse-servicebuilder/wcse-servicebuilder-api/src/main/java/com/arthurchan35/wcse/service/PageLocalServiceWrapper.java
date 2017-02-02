@@ -234,9 +234,9 @@ public class PageLocalServiceWrapper implements PageLocalService,
 	}
 
 	@Override
-	public java.util.List<com.arthurchan35.wcse.model.Page> findPagesByUrlIds(
-		java.util.List<java.lang.Long> urlIDs, int start, int end) {
-		return _pageLocalService.findPagesByUrlIds(urlIDs, start, end);
+	public java.util.List<com.arthurchan35.wcse.model.Page> findPagesByPageIDs(
+		java.util.List<java.lang.Long> pageIDs, int start, int end) {
+		return _pageLocalService.findPagesByPageIDs(pageIDs, start, end);
 	}
 
 	@Override
