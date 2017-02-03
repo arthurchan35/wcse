@@ -79,9 +79,7 @@ public class PageLocalServiceImpl extends PageLocalServiceBaseImpl {
 		StringBuilder wordsBuilder = new StringBuilder();
 		String wordsList[] = wordsInput.split("[\\s|\\x80-\\xff]+");
 		for (String word : wordsList) {
-			wordsBuilder.append('\'');
 			wordsBuilder.append(word);
-			wordsBuilder.append('\'');
 			wordsBuilder.append(',');
 		}
 		
@@ -96,9 +94,7 @@ public class PageLocalServiceImpl extends PageLocalServiceBaseImpl {
 	public List<Page> findPagesByPageIDs(List<Long> pageIDs, int start, int end) {
 		StringBuilder urlsBuilder = new StringBuilder();
 		for (long pageID : pageIDs) {
-			urlsBuilder.append('\'');
 			urlsBuilder.append(pageID);
-			urlsBuilder.append('\'');
 			urlsBuilder.append(',');
 		}
 		
@@ -106,7 +102,8 @@ public class PageLocalServiceImpl extends PageLocalServiceBaseImpl {
 			urlsBuilder.setLength(urlsBuilder.length() - 1);
 		
 		String urls = urlsBuilder.toString();
-		return pageFinder.findPagesByPageIDs(urls, start, end);
+		List<Page> test = pageFinder.findPagesByPageIDs(urls, start, end);
+		return test;
 	}
 
 	public Page fetchByURL(String url) {

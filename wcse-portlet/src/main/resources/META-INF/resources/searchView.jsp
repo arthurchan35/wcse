@@ -6,7 +6,7 @@
 	<aui:input name="saveLastPath" type="hidden" value="<%= false %>" />
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
 
-	<aui:input label="search" name="search" required="<%= true %>" type="text" />
+	<aui:input label="search" name="keyWords" required="<%= true %>" type="text" />
 
 	<aui:button-row>
 		<aui:button type="submit" value="submit" />
@@ -17,8 +17,9 @@
 	
 	<liferay-ui:search-container-results>
 		<%
-			String wordsInput = ParamUtil.getString(request, "search");
-			results = PageLocalServiceUtil.findPagesByWords(wordsInput, searchContainer.getStart(), searchContainer.getEnd());
+			String keyWords = ParamUtil.getString(request, "keyWords");
+			if (!Validator.isNull(keyWords))
+				results = PageLocalServiceUtil.findPagesByWords(keyWords, searchContainer.getStart(), searchContainer.getEnd());
 			total = results.size();
 			searchContainer.setResults(results);
 			searchContainer.setTotal(total);

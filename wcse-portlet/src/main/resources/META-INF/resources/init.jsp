@@ -12,8 +12,10 @@
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.Validator" %>
 
 <%@ page import="java.sql.Blob" %>
+<%@ page import="java.util.ArrayList" %>
 <liferay-theme:defineObjects />
 
 <portlet:defineObjects />

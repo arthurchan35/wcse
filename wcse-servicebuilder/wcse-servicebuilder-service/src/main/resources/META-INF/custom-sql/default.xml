@@ -18,7 +18,7 @@
 	<sql id="com.arthurchan35.wcse.service.persistence.PageFinder.findPagesByPageIDs">
 			<![CDATA[
 				SELECT
-					{pagesstorage_page.*}
+					pagesstorage_page.*
 				FROM
 					pagesstorage_page
 				WHERE

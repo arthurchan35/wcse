@@ -25,9 +25,9 @@ public class PageFinderImpl extends PageFinderBaseImpl implements PageFinder{
 
 			String sql = CustomSQLUtil.get(getClass(), FIND_PAGES_BY_PAGEIDS);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("Page_Entity", PageImpl.class);
+			q.addEntity("pagesstorage_page", PageImpl.class);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 

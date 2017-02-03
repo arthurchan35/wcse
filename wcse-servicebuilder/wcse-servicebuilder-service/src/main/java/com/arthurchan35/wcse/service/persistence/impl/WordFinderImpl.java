@@ -27,7 +27,7 @@ public class WordFinderImpl  extends WordFinderBaseImpl implements WordFinder {
 
 			SQLQuery q = session.createSQLQuery(sql);
 
-			q.addScalar("url_id", Type.LONG);
+			q.addScalar("pageId", Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
