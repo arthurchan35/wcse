@@ -46,7 +46,7 @@ public class PageLocalServiceWrapper implements PageLocalService,
 
 	@Override
 	public com.arthurchan35.wcse.model.Page addPage(java.lang.String url,
-		java.lang.String description, byte[] image,
+		java.lang.String description, java.lang.String image,
 		java.util.List<java.lang.String> words) {
 		return _pageLocalService.addPage(url, description, image, words);
 	}
@@ -120,12 +120,6 @@ public class PageLocalServiceWrapper implements PageLocalService,
 	public com.arthurchan35.wcse.model.Page updatePage(
 		com.arthurchan35.wcse.model.Page page) {
 		return _pageLocalService.updatePage(page);
-	}
-
-	@Override
-	public com.arthurchan35.wcse.model.PageImageBlobModel getImageBlobModel(
-		java.io.Serializable primaryKey) {
-		return _pageLocalService.getImageBlobModel(primaryKey);
 	}
 
 	@Override

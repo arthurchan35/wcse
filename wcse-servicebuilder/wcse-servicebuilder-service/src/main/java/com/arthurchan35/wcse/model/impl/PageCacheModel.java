@@ -63,7 +63,7 @@ public class PageCacheModel implements CacheModel<Page>, Externalizable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(7);
+		StringBundler sb = new StringBundler(9);
 
 		sb.append("{pageId=");
 		sb.append(pageId);
@@ -71,6 +71,9 @@ public class PageCacheModel implements CacheModel<Page>, Externalizable {
 		sb.append(url);
 		sb.append(", description=");
 		sb.append(description);
+		sb.append(", image=");
+		sb.append(image);
+		sb.append("}");
 
 		return sb.toString();
 	}
@@ -95,6 +98,13 @@ public class PageCacheModel implements CacheModel<Page>, Externalizable {
 			pageImpl.setDescription(description);
 		}
 
+		if (image == null) {
+			pageImpl.setImage(StringPool.BLANK);
+		}
+		else {
+			pageImpl.setImage(image);
+		}
+
 		pageImpl.resetOriginalValues();
 
 		return pageImpl;
@@ -105,6 +115,7 @@ public class PageCacheModel implements CacheModel<Page>, Externalizable {
 		pageId = objectInput.readLong();
 		url = objectInput.readUTF();
 		description = objectInput.readUTF();
+		image = objectInput.readUTF();
 	}
 
 	@Override
@@ -125,9 +136,17 @@ public class PageCacheModel implements CacheModel<Page>, Externalizable {
 		else {
 			objectOutput.writeUTF(description);
 		}
+
+		if (image == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(image);
+		}
 	}
 
 	public long pageId;
 	public String url;
 	public String description;
+	public String image;
 }

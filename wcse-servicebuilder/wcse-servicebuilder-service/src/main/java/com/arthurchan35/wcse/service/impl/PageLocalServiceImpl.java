@@ -45,19 +45,14 @@ public class PageLocalServiceImpl extends PageLocalServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Always use {@link com.arthurchan35.wcse.service.PageLocalServiceUtil} to access the page local service.
 	 */
-	public Page addPage(String url, String description, byte[] image, List<String> words) {
+	public Page addPage(String url, String description, String image, List<String> words) {
 		long pageId = counterLocalService.increment(Page.class.getName());
 		Page page = pagePersistence.create(pageId);
-
-		UnsyncByteArrayInputStream unsyncByteArrayInputStream =
-				new UnsyncByteArrayInputStream(image);
-		OutputBlob dataOutputBlob = new OutputBlob(
-				unsyncByteArrayInputStream, image.length);
 
 		page.setPageId(pageId);
 		page.setUrl(url);
 		page.setDescription(description);
-		page.setImage(dataOutputBlob);
+		page.setImage(image);
 		
 		pagePersistence.update(page);
 		

@@ -23,8 +23,6 @@ import com.liferay.portal.kernel.service.ServiceContext;
 
 import java.io.Serializable;
 
-import java.sql.Blob;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -86,7 +84,7 @@ public class PageWrapper implements Page, ModelWrapper<Page> {
 			setDescription(description);
 		}
 
-		Blob image = (Blob)attributes.get("image");
+		String image = (String)attributes.get("image");
 
 		if (image != null) {
 			setImage(image);
@@ -159,6 +157,16 @@ public class PageWrapper implements Page, ModelWrapper<Page> {
 	}
 
 	/**
+	* Returns the image of this page.
+	*
+	* @return the image of this page
+	*/
+	@Override
+	public java.lang.String getImage() {
+		return _page.getImage();
+	}
+
+	/**
 	* Returns the url of this page.
 	*
 	* @return the url of this page
@@ -176,16 +184,6 @@ public class PageWrapper implements Page, ModelWrapper<Page> {
 	@Override
 	public java.lang.String toXmlString() {
 		return _page.toXmlString();
-	}
-
-	/**
-	* Returns the image of this page.
-	*
-	* @return the image of this page
-	*/
-	@Override
-	public Blob getImage() {
-		return _page.getImage();
 	}
 
 	/**
@@ -250,7 +248,7 @@ public class PageWrapper implements Page, ModelWrapper<Page> {
 	* @param image the image of this page
 	*/
 	@Override
-	public void setImage(Blob image) {
+	public void setImage(java.lang.String image) {
 		_page.setImage(image);
 	}
 

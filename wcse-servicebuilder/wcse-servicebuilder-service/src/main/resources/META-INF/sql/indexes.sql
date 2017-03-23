@@ -1,1 +1,1 @@
-create unique index IX_B36E0042 on PagesStorage_Page (url[$COLUMN_LENGTH:75$]);
+create unique index IX_B36E0042 on PagesStorage_Page (url[$COLUMN_LENGTH:1024$]);

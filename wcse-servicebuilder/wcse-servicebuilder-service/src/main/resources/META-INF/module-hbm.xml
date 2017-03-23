@@ -10,15 +10,7 @@
 		</id>
 		<property name="url" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<one-to-one access="com.liferay.portal.dao.orm.hibernate.PrivatePropertyAccessor" cascade="save-update" class="com.arthurchan35.wcse.model.PageImageBlobModel" constrained="true" name="imageBlobModel" outer-join="false" />
-	</class>
-	<class lazy="true" name="com.arthurchan35.wcse.model.PageImageBlobModel" table="PagesStorage_Page">
-		<id column="pageId" name="pageId">
-			<generator class="foreign">
-				<param name="property">com.arthurchan35.wcse.model.impl.PageImpl</param>
-			</generator>
-		</id>
-		<property column="image" name="imageBlob" type="blob" />
+		<property name="image" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.arthurchan35.wcse.model.impl.WordImpl" table="PagesStorage_Word">
 		<id name="wordId" type="long">

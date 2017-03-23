@@ -31,8 +31,7 @@
 		<%
 			String url = currPage.getUrl();
 			String des = currPage.getDescription();
-			Blob imgBlob = currPage.getImage();
-			String img = new String(imgBlob.getBytes(1, (int) imgBlob.length()));
+			String img = currPage.getImage();
 		%>
 
 		<liferay-ui:search-container-column-text name="pageURL" value="<%= url %>" />

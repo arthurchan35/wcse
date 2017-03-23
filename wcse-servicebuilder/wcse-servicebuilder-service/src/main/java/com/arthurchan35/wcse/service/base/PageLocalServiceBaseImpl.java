@@ -17,7 +17,6 @@ package com.arthurchan35.wcse.service.base;
 import aQute.bnd.annotation.ProviderType;
 
 import com.arthurchan35.wcse.model.Page;
-import com.arthurchan35.wcse.model.PageImageBlobModel;
 import com.arthurchan35.wcse.service.PageLocalService;
 import com.arthurchan35.wcse.service.persistence.PageFinder;
 import com.arthurchan35.wcse.service.persistence.PagePersistence;
@@ -35,7 +34,6 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Projection;
-import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.model.PersistedModel;
@@ -311,24 +309,6 @@ public abstract class PageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Override
 	public Page updatePage(Page page) {
 		return pagePersistence.update(page);
-	}
-
-	@Override
-	public PageImageBlobModel getImageBlobModel(Serializable primaryKey) {
-		Session session = null;
-
-		try {
-			session = pagePersistence.openSession();
-
-			return (PageImageBlobModel)session.get(PageImageBlobModel.class,
-				primaryKey);
-		}
-		catch (Exception e) {
-			throw pagePersistence.processException(e);
-		}
-		finally {
-			pagePersistence.closeSession(session);
-		}
 	}
 
 	/**

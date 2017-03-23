@@ -17,7 +17,6 @@ package com.arthurchan35.wcse.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.arthurchan35.wcse.model.Page;
-import com.arthurchan35.wcse.model.PageImageBlobModel;
 
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -72,7 +71,7 @@ public interface PageLocalService extends BaseLocalService,
 	public Page addPage(Page page);
 
 	public Page addPage(java.lang.String url, java.lang.String description,
-		byte[] image, List<java.lang.String> words);
+		java.lang.String image, List<java.lang.String> words);
 
 	/**
 	* Creates a new page with the primary key. Does not add the page to the database.
@@ -125,9 +124,6 @@ public interface PageLocalService extends BaseLocalService,
 	*/
 	@Indexable(type = IndexableType.REINDEX)
 	public Page updatePage(Page page);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PageImageBlobModel getImageBlobModel(Serializable primaryKey);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();

@@ -25,7 +25,7 @@ public class Crawler {
 		domain = "localHost";
 		root = "localHost:8080";
 	}
-	/* portal db service has limit of 75 chars for String type
+	/* See portlet-model-hints, configured max url length 1024
 	 * and parameters after question mark or hashtag should be removed
 	 * and avoid duplicate urls like:
 	 * http://bla.com/xxx, bla.com/xxx/
@@ -34,7 +34,7 @@ public class Crawler {
 	 *  */
 	private String trimURL(String url, String domain) {
 
-		if (url.contains("mailto") || !url.contains(domain) || url.length() > 75)
+		if (url.contains("mailto") || !url.contains(domain) || url.length() > 1024)
 			return "";
 
 		int begin = url.indexOf("://");
@@ -53,7 +53,7 @@ public class Crawler {
 	}
 
 	private void fetchPage(String urlScanned, Document doc) {
-		StringBuilder description = new StringBuilder(150); //cautious, stringbuilder is not thread safe but faster
+		StringBuilder description = new StringBuilder(4096); //cautious, stringbuilder is not thread safe but faster
 	
 		Elements descriptionElements = doc.select("title, h0, h1, h2, h3, h4, h5, h6, p");
 	
@@ -65,13 +65,13 @@ public class Crawler {
 			String descriptionElementStr = descriptionElement.text();
 			int descriptionLength = description.length();
 			int elementLength = descriptionElementStr.length();
-			if (descriptionLength + elementLength <= 74) {
+			if (descriptionLength + elementLength <= 2047) {
 				if (description.length() > 0)
 					description.append(' ');
 				description.append(descriptionElementStr);
 			}
 			String []spl = descriptionElementStr.split("[\\s|\\x80-\\xff]+");
-	
+
 			for (String word : spl) {
 				word = word.replaceAll("^[^a-zA-Z0-9\\s]+|[^a-zA-Z0-9\\s]+$", ""); // removing leading and trailing non alphabetics
 				if (Validator.isNull(word)) continue;
@@ -82,16 +82,16 @@ public class Crawler {
 				set.add(word);
 			}
 		}
-		
+
 		String image = "";
-	
-		Elements imageElements = doc.select("img[src~=(?i)\\.(png|jpe?g|gif|bmp)]");
+
+		Elements imageElements = doc.select("img[src~=(?i)\\.(png|jpe?g|gif|bmp|tiff)]");
 		Element ele = imageElements.last();
 		
 		if (ele != null) image = ele.absUrl("src");
 		System.out.println("image is: " + image);
 		//service builder auto-handles transaction roll back
-		Page page = PageLocalServiceUtil.addPage(urlScanned, description.toString(), image.getBytes(), list);
+		Page page = PageLocalServiceUtil.addPage(urlScanned, description.toString(), image, list);
 	}
 
 	public static Crawler getSingleton() {
